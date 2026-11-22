@@ -1,0 +1,49 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;font-family:'Montserrat',sans-serif}
+.st{position:relative;width:1080px;height:1350px;overflow:hidden;background:radial-gradient(120% 80% at 70% 20%,#5B21B6 0%,#1B1464 45%,#0B1033 100%)}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.75}
+.star{position:absolute;border-radius:50%;background:#fff}
+.grid{position:absolute;left:-300px;bottom:-120px;width:1680px;height:700px;transform:perspective(900px) rotateX(68deg);
+ background-image:linear-gradient(rgba(34,211,238,.45) 2px,transparent 2px),linear-gradient(90deg,rgba(34,211,238,.45) 2px,transparent 2px);background-size:90px 90px;
+ -webkit-mask-image:linear-gradient(to top,#000 10%,transparent 85%)}
+.planet{position:absolute;left:520px;top:170px;width:440px;height:440px;border-radius:50%;
+ background:radial-gradient(circle at 32% 28%,#FDE68A 0%,#F472B6 30%,#7C3AED 62%,#1E1B4B 100%);
+ box-shadow:inset -40px -50px 90px rgba(10,5,40,.75),0 0 120px 30px rgba(219,39,119,.35)}
+.ring{position:absolute;left:400px;top:330px;width:680px;height:140px;border-radius:50%;border:5px solid rgba(250,204,21,.85);transform:rotate(-14deg);
+ box-shadow:0 0 30px rgba(250,204,21,.6),inset 0 0 20px rgba(250,204,21,.4)}
+.ringback{clip-path:inset(0 0 50% 0)}
+.halo{position:absolute;left:470px;top:120px;width:540px;height:540px;border-radius:50%;background:conic-gradient(from 90deg,transparent,rgba(34,211,238,.35),transparent 30%,rgba(250,204,21,.25),transparent 60%);filter:blur(6px)}
+.hud{position:absolute;left:90px;top:250px;width:430px;padding:28px 30px;border-radius:26px;background:rgba(255,255,255,.10);border:1.5px solid rgba(255,255,255,.28);backdrop-filter:blur(14px);box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.hud .lbl{font-family:'Inter',monospace;font-size:20px;letter-spacing:.18em;color:#67E8F9;font-weight:700}
+.hud .dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:#A3E635;box-shadow:0 0 12px #A3E635;margin-right:10px}
+.hud .row{margin-top:18px;height:12px;border-radius:6px;background:rgba(255,255,255,.18);overflow:hidden}
+.hud .row i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#22D3EE,#FACC15)}
+.hud .t{margin-top:20px;font-family:'Inter';font-size:24px;color:#E9E6FF;font-weight:500;line-height:1.35}
+.h1{position:absolute;left:90px;top:760px;width:900px;color:#fff;font-weight:900;font-size:96px;line-height:1.0;letter-spacing:-.02em;text-shadow:0 6px 40px rgba(124,58,237,.6)}
+.h1 em{font-style:normal;background:linear-gradient(90deg,#FACC15,#F472B6);-webkit-background-clip:text;color:transparent}
+.sub{position:absolute;left:90px;top:1100px;color:#C7D2FE;font-family:'Inter';font-weight:600;font-size:34px}
+.lock{position:absolute;left:90px;bottom:70px;display:flex;align-items:center;gap:18px}
+.sun{width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 42% 35%,#FFF7DE 0%,#FFC15E 48%,#F07A1A 100%);box-shadow:0 0 30px 8px rgba(255,190,90,.55);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:#3A1A00}
+.lock b{color:#fff;font-size:30px;font-weight:800}.lock span{display:block;color:#A5B4FC;font-family:'Inter';font-size:20px;font-weight:600;letter-spacing:.08em}
+.scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 2px,transparent 2px 5px);pointer-events:none}
+</style></head><body><div class="st" id="s">
+<div class="blob" style="left:-120px;top:-80px;width:620px;height:620px;background:#DB2777"></div>
+<div class="blob" style="left:600px;top:800px;width:600px;height:500px;background:#2563EB;opacity:.55"></div>
+<div class="grid"></div>
+<div class="halo"></div>
+<div class="ring ringback"></div>
+<div class="planet"></div>
+<div class="ring" style="clip-path:inset(50% 0 0 0)"></div>
+<div class="hud"><div class="lbl"><span class="dot"></span>AGENT_01 · ONLINE</div>
+<div class="row"><i style="width:82%"></i></div><div class="row"><i style="width:56%"></i></div><div class="row"><i style="width:94%"></i></div>
+<div class="t">Задача получена.<br>План построен.<br>Выполняю…</div></div>
+<div class="h1">ИИ-агент<br>не устаёт.<br><em>Никогда.</em></div>
+<div class="sub">Создаём AI-агентов, игры и софт</div>
+<div class="lock"><div class="sun">VA</div><div><b>VA Corporation</b><span>AI AGENTS · GAMES · SOFTWARE</span></div></div>
+<div class="scan"></div>
+</div><script>
+const s=document.getElementById('s');let seed=11;const r=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+for(let i=0;i<160;i++){const d=document.createElement('div');d.className='star';const z=r()*2.6+.6;
+d.style.cssText=`left:${r()*1080}px;top:${r()*900}px;width:${z}px;height:${z}px;opacity:${.2+r()*.7}`;s.insertBefore(d,s.children[2])}
+</script></body></html>
