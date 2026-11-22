@@ -15,12 +15,12 @@ VA Corporation builds **AI agents, games and IT products**. Tone: visionary, cin
 | World | Background | Accents | Text |
 |---|---|---|---|
 | Solar Dawn | #8CCBFF → #CFE8FF → #FFE4C2 | #FFC15E, #F07A1A, #2F5BEA | #0F1B3D |
-| Nebula | #1B1464 → #5B21B6 → #DB2777 | #22D3EE, #FACC15 | #FFFFFF |
-| Aurora | #052E2B → #0E8F7C → #67E8F9 | #A3E635, #F0ABFC | #FFFFFF |
-| Plasma | #FF7A2F → #FF3D7F → #6C4DFF | #FFFFFF, #FFE066 | #FFFFFF |
+| Nebula | #0B1033 → #1E1B6B → #5B21B6 | #22D3EE, #FACC15 | #FFFFFF |
+| Aurora | #052E2B → #0E8F7C → #67E8F9 | #A3E635, #FACC15 | #FFFFFF |
+| Plasma | #FF7A2F → #F59E0B → #6C4DFF | #FFFFFF, #FFE066 | #FFFFFF |
 | Ice Orbit | #E0F2FE → #BAE6FD → #F5F3FF | #6366F1, #06B6D4 | #0F172A |
 | Deep Indigo | #0B1033 → #1E2A78 | #FFC15E, #7DD3FC | #F2F5FA |
-Avoid flat pure black backgrounds. Text contrast ≥ 4.5:1 always.
+**NO PINK / MAGENTA / ROSE anywhere** (no #DB2777, #F472B6, #EC4899, #FF3D7F-type hues, no pink gradients or glows). Avoid flat pure black backgrounds. Text contrast ≥ 4.5:1 always.
 
 ## Typography (installed locally)
 - Display: Montserrat 800–900, tight tracking (-0.02em) for hooks; wide tracking for wordmarks.
@@ -44,7 +44,7 @@ Avoid flat pure black backgrounds. Text contrast ≥ 4.5:1 always.
 ## Reels
 - 1080×1920, 30 fps, 10–15 s, new scene every 1.5–2.5 s, hook in the first second, brand reveal at the end with CTA "Follow / Подпишись / Folgt uns".
 - Subtitles: main language line big, smaller English line under it (unless the reel is English).
-- Original music generated in code (numpy), hits synced to scene cuts, fade-out.
+- Music: original **techno** generated in code (numpy), 125–132 BPM, four-on-the-floor kick with long sub tail, offbeat open hi-hats + 16th closed hats, clap on 2 and 4, rolling 16th-note bassline, an acid-style resonant filtered saw/square lead (303 feel) with filter sweep, white-noise risers before scene cuts and the brand reveal, impact hit on the logo, short fade-out. Normalize to about -1 dBFS, stereo if possible.
 - Cover: 1080×1920 JPEG, hook text centered so the 3:4 profile-grid crop keeps it.
 
 ## Honesty
