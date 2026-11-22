@@ -4,6 +4,7 @@ Usage:
   python3 tools/techno.py OUT.wav --dur 12 --bpm 128 --cuts 2.0,4.1,6.3 --reveal 9.5 --seed 7
   --cuts    scene-change times in seconds (riser before, impact on each)
   --reveal  time of the brand/logo reveal (big impact + drop)
+  --festive add sleigh bells and a bell arpeggio (holiday season)
 """
 import argparse, wave
 import numpy as np
@@ -59,7 +60,24 @@ def lowpass(x, cutoff, res=0.0):
     return y
 
 
-def build(dur, bpm, cuts, reveal, seed):
+def sleigh_bell(seed=5):
+    n = int(0.12 * SR)
+    t = np.arange(n) / SR
+    noise = np.random.RandomState(seed).randn(n)
+    noise = np.diff(np.concatenate([[0], noise]))
+    tone = sum(np.sin(2 * np.pi * f * t) for f in (5200, 6900, 8300)) / 3
+    return (noise * 0.6 + tone * 0.4) * np.exp(-t * 45) * 0.10
+
+
+def bell(freq, length=0.9):
+    n = int(length * SR)
+    t = np.arange(n) / SR
+    partials = [(1, 1.0), (2.01, 0.5), (3.02, 0.28), (4.17, 0.15)]
+    s = sum(a * np.sin(2 * np.pi * freq * m * t) for m, a in partials)
+    return s * np.exp(-t * 3.2) * 0.16
+
+
+def build(dur, bpm, cuts, reveal, seed, festive=False):
     rng = np.random.RandomState(seed)
     n_total = int(dur * SR)
     L = np.zeros(n_total)
@@ -109,6 +127,17 @@ def build(dur, bpm, cuts, reveal, seed):
         sweep = 500 + 2600 * (0.5 + 0.5 * np.sin(2 * np.pi * t0 / (beat * 8)))
         sig = lowpass(saw(f, n_lead), sweep, 0.85) * env_exp(n_lead, 7) * 0.22
         add(sig, t0, pan=0.35 if (s // 2) % 2 else -0.35)
+    if festive:
+        SB = sleigh_bell()
+        for s in range(steps):
+            t0 = s * step
+            if 0.9 < t0 < dur - 0.5:
+                add(SB, t0, pan=0.4 if s % 2 else -0.4, gain=0.9 if s % 4 == 2 else 0.6)
+        # festive bell arpeggio (major), every half bar
+        melody = [0, 4, 7, 12, 7, 4, 9, 7]
+        for i, t0 in enumerate(np.arange(1.0, dur - 1.0, beat * 2)):
+            add(bell(root * 8 * 2 ** (melody[i % 8] / 12)), t0, pan=0.2 if i % 2 else -0.2)
+        add(bell(root * 16, 1.6), reveal, gain=1.4)
     # risers + impacts on scene cuts and reveal
     for c in list(cuts) + [reveal]:
         n = int(0.6 * SR)
@@ -140,10 +169,11 @@ def main():
     ap.add_argument("--cuts", default="")
     ap.add_argument("--reveal", type=float, default=None)
     ap.add_argument("--seed", type=int, default=7)
+    ap.add_argument("--festive", action="store_true", help="Christmas/New Year: sleigh bells + bell arpeggio")
     a = ap.parse_args()
     cuts = [float(x) for x in a.cuts.split(",") if x.strip()]
     reveal = a.reveal if a.reveal is not None else a.dur - 3
-    mix = build(a.dur, a.bpm, cuts, reveal, a.seed)
+    mix = build(a.dur, a.bpm, cuts, reveal, a.seed, a.festive)
     with wave.open(a.out, "wb") as w:
         w.setnchannels(2)
         w.setsampwidth(2)

@@ -49,3 +49,22 @@ VA Corporation builds **AI agents, games and IT products**. Tone: visionary, cin
 
 ## Honesty
 Never invent facts: no fake products, clients, numbers, awards, prices, releases or partnerships. No real people, brands or copyrighted characters. "This reel/banner was made by AI" is true and allowed.
+
+## Holiday season: 1 December – 7 January (MANDATORY in this period)
+Every banner, reel, caption and cover in this period gets Christmas / New Year design and greetings. Before 1 Dec and after 7 Jan: normal style.
+
+**Design:** keep the brand (sun mark, wordmark, palettes — still NO PINK) and add a festive layer: falling snow particles and bokeh lights, golden/ice garland light strings, glowing glass ornaments (spheres) hanging from top, frost/ice-crystal edges, gift boxes with light ribbons, fireworks bursts (round, radial sparks) for New Year, a glowing countdown clock / "2027" numerals, warm gold + ice blue + deep green (#0F5132 / #14532D) accents. The VA sun can wear a soft halo like a festive light. Avoid triangle-shaped trees and any star/pentagram/hexagram shapes — use round ornaments, snow dots, bokeh, garlands, spirals of light instead.
+
+**Reels:** festive scene + greeting before the brand reveal; music: `python3 tools/techno.py ... --festive` (techno + sleigh bells + bell arpeggio).
+
+**Greetings by language and date** (use the matching one on the day's posts; at least one festive post per day; key days → all posts that day are greetings):
+| Date (2026–27) | 🇷🇺 RU | 🇩🇪 DE | 🇬🇧 EN |
+|---|---|---|---|
+| 1–23 Dec | «Скоро праздники!», «С наступающим Новым годом!» | Adventszeit; 6 Dec «Frohen Nikolaustag!»; Advent Sundays 6, 13, 20 Dec «Einen schönen 2./3./4. Advent!» | "Holiday season is here!", "Happy holidays!" |
+| 24–26 Dec | «С католическим Рождеством!» (24–25), «Тёплых праздников!» | «Frohe Weihnachten!» (24 Heiligabend: «Frohe Weihnachten und besinnliche Feiertage!») | "Merry Christmas!" |
+| 27–30 Dec | «С наступающим 2027!» | «Einen guten Rutsch ins neue Jahr!» | "Happy New Year in advance!" |
+| 31 Dec | «С наступающим Новым годом!» countdown | «Guten Rutsch! Frohes Silvester!» | "Happy New Year's Eve!" |
+| 1 Jan | «С Новым 2027 годом!» | «Frohes neues Jahr 2027!» | "Happy New Year 2027!" |
+| 2–6 Jan | «Счастливых праздников!», итоги / планы на год | «Frohes neues Jahr!» | "New year, new ideas!" |
+| 7 Jan | «С Рождеством Христовым!» | «Frohes orthodoxes Weihnachtsfest an alle, die heute feiern!» | "Merry Christmas to everyone celebrating today!" |
+Wishes may be warm and on-brand ("пусть ваши идеи сбываются, а рутину берут на себя AI-агенты") but never invent company facts, results or offers.
