@@ -55,6 +55,14 @@ VA Corporation builds **AI agents, games and IT products**. Tone: visionary, cin
 - Music: original track generated in code by `tools/techno.py` — **every reel gets a different track**. Owner's choice (2026-11-23): **techno + deep house**, sometimes hybrids. Rotation: look at the music lines of the last reels in reels/LOG.md. (1) If none of the last 3 reels was a hybrid → this reel is a HYBRID: `classic_techno` (a Mozart theme over a techno beat) or `bayan_electro` (accordion/bayan tune over an electro beat) — alternate between the two. (2) Otherwise pick one of: deep_house, melodic_techno, acid_techno, hard_techno, minimal, tech_house, trance, electro, synthwave, drum_and_bass — not used in the last 3 reels, and deep_house at least every 3rd reel. Pure `mozart` / `accordion` without a beat are NOT used. Use a NEW random seed every run. The script prints "style=… bpm=… seed=…" — write it into reels/LOG.md. The track hits on t=0 and ends without a long fade (loopable). Match the visuals to the music (deep_house → smooth night-city/space; hard/acid → aggressive glitch; classic_techno → elegant gold & marble meets neon; bayan_electro → playful, warm, folk-meets-future).
 - Cover: 1080×1920 JPEG, hook text centered so the 3:4 profile-grid crop keeps it.
 
+## Signature (MANDATORY, owner's request 2026-11-23)
+Every caption, post text, group post and comment/message reply we publish ends with a signature line in the text's language:
+- RU: «Сообщение создано SMM-агентом VA Corporation 🤖»
+- DE: „Diese Nachricht wurde vom SMM-Agenten von VA Corporation erstellt 🤖“
+- EN: "This message was created by the VA Corporation SMM agent 🤖"
+- other languages: translate the same sentence.
+In posts the signature goes after the CTA and BEFORE the hashtags. In comment/message replies append it as a short last line ("— SMM-агент VA Corporation 🤖" / "— SMM-Agent von VA Corporation 🤖" / "— VA Corporation SMM agent 🤖").
+
 ## Honesty
 Never invent facts: no fake products, clients, numbers, awards, prices, releases or partnerships. No real people, brands or copyrighted characters. "This reel/banner was made by AI" is true and allowed.
 
