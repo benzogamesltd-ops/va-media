@@ -1,0 +1,234 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;font-family:'Montserrat',sans-serif;background:#F4EFE4}
+.st{position:relative;width:1080px;height:1920px;overflow:hidden;background:linear-gradient(170deg,#FBF8F1 0%,#F1EADC 45%,#E9E1D0 100%);animation:push 10.4s cubic-bezier(.7,0,.3,1) forwards}
+@keyframes push{0%{transform:scale(1.04)}6%{transform:scale(1)}100%{transform:scale(1)}}
+/* marble veins */
+.veins{position:absolute;inset:-200px;animation:vdrift 10.4s linear forwards}
+@keyframes vdrift{to{transform:translate(-60px,-120px) rotate(2deg)}}
+.vn{position:absolute;height:3px;border-radius:3px;background:linear-gradient(90deg,transparent,rgba(120,104,80,.35),rgba(176,140,70,.45),transparent);filter:blur(1.2px);transform-origin:0 50%}
+.vn.t{height:8px;filter:blur(6px);background:linear-gradient(90deg,transparent,rgba(150,128,96,.22),transparent)}
+.blob{position:absolute;border-radius:50%;filter:blur(120px)}
+.g1{left:-260px;top:-120px;width:820px;height:760px;background:#FFC15E;opacity:.45;animation:drift 10.4s ease-in-out infinite alternate}
+.g2{left:520px;top:1240px;width:760px;height:760px;background:#22D3EE;opacity:.30;animation:drift 10.4s ease-in-out infinite alternate-reverse}
+.g3{left:600px;top:200px;width:520px;height:520px;background:#2F5BEA;opacity:.16;animation:drift 8s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(120px,-140px) scale(1.12)}}
+.dust{position:absolute;inset:0;animation:rise2 10.4s linear forwards}
+@keyframes rise2{to{transform:translateY(-220px)}}
+.dot{position:absolute;border-radius:50%;background:#E8A93A;box-shadow:0 0 8px #FFC15E;animation:tw 1.8s ease-in-out infinite alternate}
+.dot.c{background:#06B6D4;box-shadow:0 0 10px #22D3EE}
+@keyframes tw{to{opacity:.15}}
+.grid{position:absolute;left:-420px;bottom:-280px;width:1920px;height:900px;transform:perspective(900px) rotateX(72deg);
+ background-image:linear-gradient(rgba(6,182,212,.55) 2px,transparent 2px),linear-gradient(90deg,rgba(47,91,234,.45) 2px,transparent 2px);background-size:110px 110px;
+ -webkit-mask-image:linear-gradient(to top,#000 10%,transparent 80%);opacity:.7;animation:gridmove 10.4s linear forwards}
+@keyframes gridmove{to{background-position:0 800px}}
+/* columns */
+.col{position:absolute;top:0;width:150px;height:1920px;background:linear-gradient(90deg,rgba(255,255,255,.0),rgba(255,255,255,.75) 30%,rgba(214,202,180,.6) 70%,rgba(255,255,255,0));opacity:.55}
+.col:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 22px,rgba(160,140,110,.18) 22px 26px)}
+.cl{left:-40px;animation:colL 10.4s cubic-bezier(.7,0,.3,1) forwards}.cr{right:-40px;animation:colR 10.4s cubic-bezier(.7,0,.3,1) forwards}
+@keyframes colL{0%,12%{transform:none}16%,78%{transform:translateX(-90px)}84%,100%{transform:none}}
+@keyframes colR{0%,12%{transform:none}16%,78%{transform:translateX(90px)}84%,100%{transform:none}}
+/* global sun */
+.sunG{position:absolute;left:540px;top:800px;width:0;height:0;z-index:5;animation:sunmove 10.4s cubic-bezier(.7,0,.3,1) forwards}
+@keyframes sunmove{0%,11%{transform:translate(0,0) scale(1)}15%,80%{transform:translate(380px,-560px) scale(.3)}84%,100%{transform:translate(0,-80px) scale(.78)}}
+.sunO{position:absolute;left:-280px;top:-280px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle at 42% 35%,#FFF7DE 0%,#FFD37A 38%,#FFC15E 58%,#F07A1A 100%);box-shadow:0 0 160px 60px rgba(255,170,60,.55),0 0 0 14px rgba(255,247,222,.45);animation:sunpulse .7s ease-in-out infinite alternate}
+@keyframes sunpulse{from{box-shadow:0 0 140px 50px rgba(255,170,60,.5),0 0 0 14px rgba(255,247,222,.4)}to{box-shadow:0 0 200px 80px rgba(255,170,60,.65),0 0 0 22px rgba(255,247,222,.55)}}
+.ringN{position:absolute;left:-380px;top:-380px;width:760px;height:760px;border-radius:50%;border:5px solid rgba(6,182,212,.85);border-left-color:transparent;border-bottom-color:rgba(47,91,234,.6);box-shadow:0 0 40px rgba(34,211,238,.6);animation:spin 2.8s linear infinite}
+.ringN.b{left:-440px;top:-440px;width:880px;height:880px;border:3px dashed rgba(176,124,30,.55);box-shadow:none;animation:spin 9s linear infinite reverse}
+.sunVA{position:absolute;left:-280px;top:-280px;width:560px;height:560px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:200px;color:#3A1A00;letter-spacing:.04em;opacity:0;animation:vain .5s cubic-bezier(.2,.9,.3,1.3) 8.45s forwards}
+@keyframes vain{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(15,27,61,.035) 0 2px,transparent 2px 5px);pointer-events:none;z-index:50}
+.vig{position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 45%,transparent 60%,rgba(120,96,60,.22) 100%);z-index:45;pointer-events:none}
+/* step dots */
+.steps{position:absolute;left:0;right:0;top:120px;display:flex;justify-content:center;gap:18px;z-index:60}
+.steps i{display:block;width:120px;height:14px;border-radius:7px;background:rgba(15,27,61,.16);overflow:hidden;position:relative}
+.steps i:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#06B6D4,#2F5BEA);transform:scaleX(0);transform-origin:0 50%;animation:grow .4s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:inherit}
+.stepsW{animation:stw 10.4s linear forwards}
+@keyframes stw{0%,80%{opacity:1}82%,100%{opacity:0}}
+@keyframes grow{to{transform:scaleX(1)}}
+/* scenes */
+.sc{position:absolute;inset:0;opacity:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 70px;z-index:10}
+.s1{opacity:1;animation:w1 1.4s linear 0s forwards}
+@keyframes w1{0%,90%{opacity:1;transform:none}100%{opacity:0;transform:scale(1.12)}}
+.s2{animation:win 1.4s linear 1.4s forwards}.s3{animation:win 1.4s linear 2.8s forwards}.s4{animation:win 1.4s linear 4.2s forwards}.s5{animation:win 1.4s linear 5.6s forwards}.s6{animation:win 1.4s linear 7.0s forwards}
+.s7{animation:last .2s ease-out 8.4s forwards}
+@keyframes win{0%{opacity:0;transform:scale(1.08)}8%{opacity:1;transform:none}90%{opacity:1;transform:none}100%{opacity:0;transform:scale(.94)}}
+@keyframes last{to{opacity:1}}
+.hero{color:#0F1B3D;font-weight:900;line-height:.98;letter-spacing:-.025em}
+.acc{color:#1E44C8}
+.mono{font-family:'Inter';font-weight:800;letter-spacing:.24em;font-size:30px;color:#0E7490}
+.sub{font-family:'Inter';font-weight:700;color:#28324F;font-size:40px;margin-top:26px}
+.slam{opacity:0;animation:slam .32s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes slam{from{opacity:0;transform:scale(1.7);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+.rise{opacity:0;animation:rise .45s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes rise{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+.dark{background:rgba(15,27,61,.90);border:2px solid rgba(34,211,238,.6);box-shadow:0 30px 90px rgba(15,27,61,.35),0 0 40px rgba(34,211,238,.25),inset 0 1px 0 rgba(255,255,255,.2);border-radius:30px}
+/* s1 hook */
+.live{display:inline-flex;align-items:center;gap:14px;padding:14px 30px;border-radius:999px;background:#0F1B3D;font-family:'Inter';font-weight:800;font-size:30px;letter-spacing:.2em;color:#A5F3FC;box-shadow:0 0 30px rgba(34,211,238,.45)}
+.live i{width:18px;height:18px;border-radius:50%;background:#22D3EE;box-shadow:0 0 16px #22D3EE;animation:blink .35s steps(1) infinite}
+@keyframes blink{50%{opacity:.15}}
+.hook{font-size:158px;margin-top:40px;text-shadow:0 0 40px rgba(255,247,222,.95),0 6px 0 rgba(255,247,222,.7);animation:hk 1.4s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes hk{0%{transform:scale(1.08)}18%{transform:scale(1)}48%{transform:scale(1)}50%{transform:scale(1.05) translateX(10px);text-shadow:10px 0 #22D3EE,-10px 0 #FFC15E}54%{transform:scale(1) translateX(-6px);text-shadow:-8px 0 #22D3EE,8px 0 #FFC15E}58%,100%{transform:none;text-shadow:0 0 40px rgba(255,247,222,.95),0 6px 0 rgba(255,247,222,.7)}}
+.hook span{display:block}
+.stamp{position:absolute;left:600px;top:1270px;padding:16px 30px;border:6px solid #1E44C8;border-radius:20px;color:#1E44C8;background:rgba(251,248,241,.92);font-family:'Montserrat';font-weight:900;font-size:52px;letter-spacing:.04em;transform:rotate(-8deg);opacity:0;animation:stamp .25s cubic-bezier(.2,.8,.2,1) .7s forwards}
+@keyframes stamp{from{opacity:0;transform:rotate(-8deg) scale(2.4)}to{opacity:1;transform:rotate(-8deg) scale(1)}}
+.promise{position:absolute;left:0;right:0;top:1470px;font-family:'Inter';font-weight:800;font-size:40px;color:#0F1B3D}
+.promise b{color:#0E7490}
+/* s2 script */
+.card{width:900px;margin-top:50px;padding:36px 40px;text-align:left}
+.card .hd{font-family:'Inter';font-weight:800;font-size:24px;letter-spacing:.2em;color:#67E8F9;display:flex;justify-content:space-between}
+.card .hd span{color:#FFC15E}
+.ln{font-family:'Inter';font-weight:600;font-size:34px;color:#E6ECFF;margin-top:22px;white-space:nowrap;overflow:hidden;width:0;border-right:4px solid #22D3EE;animation:typ .45s steps(26) forwards}
+.ln b{color:#FFC15E;font-weight:800}
+@keyframes typ{99%{border-color:#22D3EE}to{width:820px;border-color:transparent}}
+.ok{display:inline-block;margin-top:26px;padding:10px 22px;border-radius:12px;background:#22D3EE;color:#0F1B3D;font-family:'Inter';font-weight:900;font-size:28px;letter-spacing:.12em;opacity:0;animation:pop .3s cubic-bezier(.2,.9,.3,1.4) forwards}
+/* s3 scenes */
+.thumbs{display:grid;grid-template-columns:repeat(3,270px);gap:24px;margin-top:50px;perspective:1200px}
+.th{position:relative;width:270px;height:400px;border-radius:26px;overflow:hidden;border:3px solid #0F1B3D;box-shadow:0 20px 50px rgba(15,27,61,.3);opacity:0;animation:flip .4s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes flip{from{opacity:0;transform:rotateY(90deg) scale(.8)}to{opacity:1;transform:none}}
+.th .bg{position:absolute;inset:-40%;animation:spin 4s linear infinite}
+.th .o{position:absolute;left:50%;top:42%;width:110px;height:110px;margin:-55px;border-radius:50%;animation:br .5s ease-in-out infinite alternate}
+@keyframes br{to{transform:scale(1.15)}}
+.th .n{position:absolute;left:14px;top:14px;padding:5px 12px;border-radius:10px;background:rgba(15,27,61,.8);font-family:'Inter';font-weight:800;font-size:20px;color:#FFE7B0;letter-spacing:.1em}
+.th .t{position:absolute;left:18px;right:18px;bottom:40px;height:14px;border-radius:7px;background:rgba(255,255,255,.9)}
+/* s4 subtitles */
+.phone{position:relative;width:560px;height:760px;margin-top:44px;border-radius:56px;border:6px solid #0F1B3D;overflow:hidden;background:linear-gradient(160deg,#1E2A78,#0B1033);box-shadow:0 40px 100px rgba(15,27,61,.35),0 0 60px rgba(34,211,238,.3)}
+.phone .o{position:absolute;left:50%;top:34%;width:240px;height:240px;margin:-120px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#FFF7DE,#FFC15E 55%,#F07A1A);box-shadow:0 0 90px 30px rgba(255,170,60,.45)}
+.subl{position:absolute;left:24px;right:24px;padding:14px 16px;border-radius:16px;background:rgba(0,0,0,.55);color:#fff;font-family:'Inter';font-weight:800;font-size:30px;line-height:1.2;opacity:0;animation:rise .35s cubic-bezier(.2,.8,.2,1) forwards}
+.subl em{display:inline-block;font-style:normal;padding:2px 10px;border-radius:8px;background:#22D3EE;color:#0F1B3D;font-size:22px;margin-right:12px;vertical-align:middle}
+/* s5 music */
+.staff{position:relative;width:920px;height:300px;margin-top:40px}
+.staff .l{position:absolute;left:0;right:0;height:4px;border-radius:2px;background:linear-gradient(90deg,transparent,#B07C1E 12%,#C99A3A 88%,transparent)}
+.note{position:absolute;width:56px;height:42px;border-radius:50%;background:#0F1B3D;transform:rotate(-20deg);opacity:0;animation:nin .3s cubic-bezier(.2,.9,.3,1.4) forwards}
+.note:after{content:'';position:absolute;right:2px;bottom:22px;width:6px;height:120px;background:#0F1B3D}
+@keyframes nin{from{opacity:0;transform:rotate(-20deg) translateY(-120px) scale(.4)}to{opacity:1;transform:rotate(-20deg)}}
+.eq{display:flex;align-items:flex-end;gap:14px;height:240px;padding:26px 36px;margin-top:30px}
+.eq i{display:block;width:34px;border-radius:8px;background:linear-gradient(0deg,#2F5BEA,#22D3EE 60%,#FFC15E);box-shadow:0 0 18px rgba(34,211,238,.6);animation:eq .233s ease-in-out infinite alternate}
+@keyframes eq{from{height:20%}to{height:100%}}
+.x{display:inline-block;color:#0E7490;margin:0 10px}
+/* s6 publish */
+.orb{position:relative;width:860px;height:860px;margin-top:10px}
+.ringx{position:absolute;border-radius:50%;border:3px solid rgba(15,27,61,.25)}
+.core{position:absolute;left:290px;top:290px;width:280px;height:280px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Inter';font-weight:900;font-size:36px;letter-spacing:.14em;color:#A5F3FC;animation:br .7s ease-in-out infinite alternate}
+.ospin{position:absolute;left:430px;top:430px;width:0;height:0;animation:spin 7s linear infinite}
+.tw{position:absolute;width:0;height:0;opacity:0;animation:pop .35s cubic-bezier(.2,.9,.3,1.4) forwards}
+.node{position:absolute;left:0;top:0;width:300px;height:100px;margin:-50px -150px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-family:'Inter';font-weight:800;font-size:32px;letter-spacing:.06em;color:#fff;animation:spin 7s linear infinite reverse}
+.node b{display:inline-block;width:16px;height:16px;border-radius:50%;background:#FFC15E;box-shadow:0 0 14px #FFC15E;margin-right:14px}
+.beam{position:absolute;left:430px;top:430px;width:380px;height:6px;transform-origin:0 50%;background:linear-gradient(90deg,rgba(6,182,212,.95),transparent);animation:spin 1.4s linear infinite}
+/* s7 brand */
+.flash{position:absolute;inset:0;background:#FFF7DE;opacity:0;animation:flash .6s ease-out 8.4s forwards;z-index:40;pointer-events:none}
+@keyframes flash{0%{opacity:1}100%{opacity:0}}
+.s7 .wrap{position:absolute;left:0;right:0;top:1070px;display:flex;flex-direction:column;align-items:center}
+.url{padding:24px 40px;border-radius:26px;background:#0F1B3D;font-family:'Inter';font-weight:800;font-size:62px;color:#FFFFFF;box-shadow:0 0 60px rgba(34,211,238,.5);border:3px solid #22D3EE}
+.cta{margin-top:30px;padding:24px 74px;border-radius:999px;background:linear-gradient(90deg,#FFC15E,#FACC15);color:#0F1B3D;font-weight:900;font-size:54px;animation:pulse .7s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.06)}}
+.halo{position:absolute;left:540px;top:720px;width:640px;height:640px;margin:-320px;border-radius:50%;border:6px solid rgba(6,182,212,.8);opacity:0;animation:halo 1.2s cubic-bezier(.2,.8,.2,1) 8.4s forwards;z-index:6}
+@keyframes halo{0%{opacity:1;transform:scale(.4)}100%{opacity:0;transform:scale(2)}}
+</style></head><body><div class="st">
+<div class="veins" id="veins"></div>
+<div class="blob g1"></div><div class="blob g2"></div><div class="blob g3"></div>
+<div class="grid"></div>
+<div class="col cl"></div><div class="col cr"></div>
+<div class="dust" id="dust"></div>
+<div class="sunG"><div class="ringN b"></div><div class="ringN"></div><div class="sunO"></div><div class="sunVA">VA</div></div>
+<div class="halo"></div>
+
+<div class="stepsW"><div class="steps"><i style="animation-delay:1.45s"></i><i style="animation-delay:2.85s"></i><i style="animation-delay:4.25s"></i><i style="animation-delay:5.65s"></i><i style="animation-delay:7.05s"></i></div></div>
+
+<div class="sc s1">
+ <div class="live"><i></i>AI AGENT · EDITING LIVE</div>
+ <div class="hero hook"><span>No human</span><span class="acc">edited</span><span>this video.</span></div>
+ <div class="stamp">100% AI</div>
+ <div class="promise">Watch all <b>5 steps</b> →</div>
+</div>
+
+<div class="sc s2">
+ <div class="mono rise" style="animation-delay:1.45s">STEP 01 · SCRIPT</div>
+ <div class="hero" style="font-size:118px;margin-top:24px"><span class="slam" style="display:block;animation-delay:1.45s">It wrote</span><span class="slam acc" style="display:block;animation-delay:1.6s">the script.</span></div>
+ <div class="card dark rise" style="animation-delay:1.55s">
+  <div class="hd">AGENT_EDITOR · SCRIPT.TXT<span>● REC</span></div>
+  <div class="ln" style="animation-delay:1.7s"><b>0.0s</b> Hook: “No human edited…”</div>
+  <div class="ln" style="animation-delay:1.95s"><b>1.4s</b> Show the 5 steps</div>
+  <div class="ln" style="animation-delay:2.2s"><b>8.4s</b> Sun logo + website</div>
+  <div class="ok" style="animation-delay:2.4s">✓ APPROVED BY AGENT</div>
+ </div>
+</div>
+
+<div class="sc s3">
+ <div class="mono rise" style="animation-delay:2.85s">STEP 02 · SCENES</div>
+ <div class="hero" style="font-size:112px;margin-top:24px"><span class="slam" style="display:block;animation-delay:2.85s">It animated</span><span class="slam acc" style="display:block;animation-delay:3.0s">every scene.</span></div>
+ <div class="thumbs">
+  <div class="th" style="animation-delay:3.05s"><div class="bg" style="background:conic-gradient(#0B1033,#1E2A78,#22D3EE,#0B1033)"></div><div class="o" style="background:radial-gradient(circle,#FFF7DE,#FFC15E 55%,transparent 60%)"></div><div class="n">01</div><div class="t"></div></div>
+  <div class="th" style="animation-delay:3.15s"><div class="bg" style="background:conic-gradient(#052E2B,#0E8F7C,#67E8F9,#052E2B)"></div><div class="o" style="background:radial-gradient(circle,#ECFCCB,#A3E635 55%,transparent 60%)"></div><div class="n">02</div><div class="t"></div></div>
+  <div class="th" style="animation-delay:3.25s"><div class="bg" style="background:conic-gradient(#FF7A2F,#F59E0B,#6C4DFF,#FF7A2F)"></div><div class="o" style="background:radial-gradient(circle,#fff,#FFE066 55%,transparent 60%)"></div><div class="n">03</div><div class="t"></div></div>
+  <div class="th" style="animation-delay:3.35s"><div class="bg" style="background:conic-gradient(#E0F2FE,#6366F1,#BAE6FD,#E0F2FE)"></div><div class="o" style="background:radial-gradient(circle,#fff,#06B6D4 55%,transparent 60%)"></div><div class="n">04</div><div class="t"></div></div>
+  <div class="th" style="animation-delay:3.45s"><div class="bg" style="background:conic-gradient(#0B1033,#1E1B6B,#5B21B6,#0B1033)"></div><div class="o" style="background:radial-gradient(circle,#FEF9C3,#FACC15 55%,transparent 60%)"></div><div class="n">05</div><div class="t"></div></div>
+  <div class="th" style="animation-delay:3.55s"><div class="bg" style="background:conic-gradient(#FBF8F1,#E9E1D0,#C99A3A,#FBF8F1)"></div><div class="o" style="background:radial-gradient(circle,#FFF7DE,#F07A1A 55%,transparent 60%)"></div><div class="n">06</div><div class="t"></div></div>
+ </div>
+</div>
+
+<div class="sc s4">
+ <div class="mono rise" style="animation-delay:4.25s">STEP 03 · SUBTITLES</div>
+ <div class="hero" style="font-size:112px;margin-top:24px"><span class="slam" style="display:block;animation-delay:4.25s">3 languages.</span><span class="slam acc" style="display:block;animation-delay:4.4s">Zero typing.</span></div>
+ <div class="phone">
+  <div class="o"></div>
+  <div class="subl" style="top:430px;animation-delay:4.5s"><em>EN</em>No human edited this video.</div>
+  <div class="subl" style="top:530px;animation-delay:4.7s"><em>DE</em>Kein Mensch hat das geschnitten.</div>
+  <div class="subl" style="top:630px;animation-delay:4.9s"><em>RU</em>Это видео смонтировал не человек.</div>
+ </div>
+</div>
+
+<div class="sc s5">
+ <div class="mono rise" style="animation-delay:5.65s">STEP 04 · MUSIC</div>
+ <div class="hero" style="font-size:132px;margin-top:24px"><span class="slam" style="display:block;animation-delay:5.65s">Mozart</span><span class="slam" style="display:block;animation-delay:5.8s"><span class="x">×</span><span class="acc">Techno</span></span></div>
+ <div class="sub rise" style="animation-delay:5.9s">Classic theme · beat coded by our agent</div>
+ <div class="staff" id="staff">
+  <div class="l" style="top:60px"></div><div class="l" style="top:105px"></div><div class="l" style="top:150px"></div><div class="l" style="top:195px"></div><div class="l" style="top:240px"></div>
+ </div>
+ <div class="eq dark rise" style="animation-delay:5.75s" id="eq"></div>
+</div>
+
+<div class="sc s6">
+ <div class="mono rise" style="animation-delay:7.05s">STEP 05 · PUBLISH</div>
+ <div class="hero" style="font-size:112px;margin-top:24px"><span class="slam" style="display:block;animation-delay:7.05s">Then it</span><span class="slam acc" style="display:block;animation-delay:7.2s">posted it.</span></div>
+ <div class="orb">
+  <div class="ringx" style="left:50px;top:50px;width:760px;height:760px"></div>
+  <div class="ringx" style="left:170px;top:170px;width:520px;height:520px;border-style:dashed"></div>
+  <div class="beam"></div>
+  <div class="ospin">
+   <div class="tw" style="left:0;top:-340px;animation-delay:7.25s"><div class="node dark"><b></b>INSTAGRAM</div></div>
+   <div class="tw" style="left:340px;top:0;animation-delay:7.35s"><div class="node dark"><b></b>FACEBOOK</div></div>
+   <div class="tw" style="left:0;top:340px;animation-delay:7.45s"><div class="node dark"><b></b>TIKTOK</div></div>
+   <div class="tw" style="left:-340px;top:0;animation-delay:7.55s"><div class="node dark"><b></b>WEBSITE</div></div>
+  </div>
+  <div class="core dark" style="border-radius:50%">LIVE</div>
+ </div>
+ <div class="sub rise" style="animation-delay:7.6s;margin-top:0">Yes — this reel too.</div>
+</div>
+
+<div class="sc s7">
+ <div class="wrap">
+  <div class="hero rise" style="font-size:92px;animation-delay:8.5s">VA Corporation</div>
+  <div class="mono rise" style="margin-top:16px;animation-delay:8.6s">AI AGENTS · GAMES · SOFTWARE</div>
+  <div class="rise" style="margin-top:36px;animation-delay:8.7s"><div class="url">va-corporation.github.io</div></div>
+  <div class="rise" style="animation-delay:8.85s"><div class="cta">Follow us</div></div>
+ </div>
+</div>
+
+<div class="flash"></div><div class="vig"></div><div class="scan"></div>
+</div><script>
+let seed=523117;const r=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+const v=document.getElementById('veins');
+for(let i=0;i<16;i++){const d=document.createElement('div');d.className='vn'+(i%3==0?' t':'');
+d.style.cssText=`left:${r()*1300-100}px;top:${r()*2300}px;width:${500+r()*900}px;transform:rotate(${-40+r()*50}deg)`;v.appendChild(d)}
+const s=document.getElementById('dust');
+for(let i=0;i<140;i++){const d=document.createElement('div');const k=r();d.className='dot'+(k>.6?' c':'');const z=r()*4+2;
+d.style.cssText=`left:${r()*1080}px;top:${r()*2200}px;width:${z}px;height:${z}px;opacity:${.35+r()*.6};animation-delay:-${(r()*1.8).toFixed(2)}s`;s.appendChild(d)}
+const st=document.getElementById('staff');
+for(let i=0;i<9;i++){const n=document.createElement('div');n.className='note';const y=[150,105,128,60,82,105,150,195,172][i];
+n.style.cssText=`left:${40+i*98}px;top:${y-21}px;animation-delay:${(5.8+i*.07).toFixed(2)}s`;st.appendChild(n)}
+const eq=document.getElementById('eq');
+for(let i=0;i<20;i++){const b=document.createElement('i');b.style.animationDelay=`-${(r()*.466).toFixed(3)}s`;b.style.animationDuration=`${(.2+r()*.1).toFixed(3)}s`;eq.appendChild(b)}
+</script></body></html>
