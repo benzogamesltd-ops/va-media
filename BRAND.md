@@ -84,3 +84,6 @@ Every banner, reel, caption and cover in this period gets Christmas / New Year d
 | 2–6 Jan | «Счастливых праздников!», итоги / планы на год | «Frohes neues Jahr!» | "New year, new ideas!" |
 | 7 Jan | «С Рождеством Христовым!» | «Frohes orthodoxes Weihnachtsfest an alle, die heute feiern!» | "Merry Christmas to everyone celebrating today!" |
 Wishes may be warm and on-brand ("пусть ваши идеи сбываются, а рутину берут на себя AI-агенты") but never invent company facts, results or offers.
+
+## Prices (MANDATORY for replies, comments and DMs)
+Approved price list: **PRICES.md** in this repo. When anyone asks about price/cost/"how much", answer with the relevant "from" prices from PRICES.md, always add "+ VAT" and that monthly maintenance depends on project complexity, offer the free first consultation and WhatsApp/Telegram +34 641 387 122. Never invent other prices or discounts.
