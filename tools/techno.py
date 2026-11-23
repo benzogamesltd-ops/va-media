@@ -76,6 +76,10 @@ def osc(kind, f, n, rng=None, detune=0.0):
         return out / 4
     if kind == "fm":
         return np.sin(2 * np.pi * f * t + 2.2 * np.exp(-t * 6) * np.sin(2 * np.pi * f * 2 * t))
+    if kind == "rhodes":
+        e = np.exp(-t * 2.5)
+        return (np.sin(2 * np.pi * f * t + 1.3 * e * np.sin(2 * np.pi * f * t)) * 0.8
+                + 0.2 * np.sin(2 * np.pi * f * 4.0 * t) * np.exp(-t * 9))
     if kind == "organ":
         return (np.sin(2 * np.pi * f * t) + 0.5 * np.sin(4 * np.pi * f * t) + 0.25 * np.sin(6 * np.pi * f * t)) / 1.75
     if kind == "reese":
@@ -228,7 +232,221 @@ STYLES = {
         bass=dict(kind="saw", cut=550, q=1.8, pattern=["..x.x..x..x.x..x", "...x..x...x..xx."], octave=-2),
         lead=dict(kind="organ", stab=True, cut=(1800, 3200), q=1.0, rate=4, octave=0, sevenths=True),
         pad=None, reverb=0.25, duck=0.45),
+    "deep_house": dict(bpm=(118, 122), kick="techno", scale=["minor", "dorian"], swing=0.14,
+        drums={"hc": ["x.x.x.x.x.x.x.x."], "ho": ["..o...o...o...o."], "rim": ["....x.......x...", "....x..x....x..."], "shk": ["xxxxxxxxxxxxxxxx"]},
+        bass=dict(kind="sine", cut=500, q=0.8, pattern=["x.....x...x.....", "x..x......x..x..", "..x...x...x..x.."], octave=-2, long=True),
+        lead=dict(kind="rhodes", stab=True, cut=(2200, 3800), q=0.8, rate=4, octave=0, sevenths=True),
+        pad=dict(kind="supersaw", cut=1100), reverb=0.4, duck=0.45),
 }
+
+# ------------------------------------------------- acoustic styles (separate engine)
+# Mozart (1756-1791) themes are public domain. Notes: (midi or None for rest, length in beats).
+MOZART = {
+    "eine_kleine_nachtmusik_k525": dict(bpm=132, beats=4, sound="strings", notes=[
+        (67, 1), (None, .5), (62, .5), (67, 1), (None, .5), (62, .5), (67, .5), (62, .5), (67, .5), (71, .5), (74, 2),
+        (72, 1), (None, .5), (69, .5), (72, 1), (None, .5), (69, .5), (72, .5), (69, .5), (66, .5), (69, .5), (62, 2)],
+        chords=[[43, 55, 59, 62], [43, 55, 59, 62], [38, 54, 57, 60], [38, 54, 57, 60]]),
+    "symphony_40_k550": dict(bpm=112, beats=4, sound="strings", notes=[
+        (75, .5), (74, .5), (74, 1), (75, .5), (74, .5), (74, 1), (75, .5), (74, .5), (74, 1), (82, 1),
+        (None, .5), (82, .5), (81, .5), (79, .5), (79, 1), (79, .5), (77, .5), (75, 1), (75, .5), (74, .5), (72, 1), (72, 1),
+        (None, .5), (74, .5), (72, .5)],
+        chords=[[43, 55, 58, 62], [43, 55, 58, 62], [43, 55, 60, 63], [38, 54, 57, 60]]),
+    "sonata_k545": dict(bpm=118, beats=4, sound="piano", alberti=True, notes=[
+        (72, 2), (76, 1), (79, 1), (71, 1.5), (72, .25), (74, .25), (72, 2), (81, 2), (79, 1), (84, 1), (79, 1), (77, 1), (76, 2)],
+        chords=[[48, 55, 64], [43, 55, 65], [41, 53, 60], [43, 55, 64]]),
+    "rondo_alla_turca_k331": dict(bpm=120, beats=2, sound="piano", notes=[
+        (71, .25), (69, .25), (68, .25), (69, .25), (72, 1), (74, .25), (72, .25), (71, .25), (72, .25), (76, 1),
+        (77, .25), (76, .25), (75, .25), (76, .25), (83, .25), (81, .25), (80, .25), (81, .25),
+        (83, .25), (81, .25), (80, .25), (81, .25), (84, 1), (81, .5), (84, .5), (83, .5), (81, .5), (79, .5), (81, .5),
+        (83, .5), (81, .5), (79, .5), (81, .5), (83, .5), (81, .5), (79, .5), (78, .5), (76, 1)],
+        chords=[[45, 57, 60, 64], [45, 57, 60, 64], [45, 57, 60, 64], [40, 56, 59, 62]]),
+}
+ACOUSTIC = ("mozart", "accordion")
+
+
+# ------------------------------------------------- acoustic instruments
+
+def piano(f, length):
+    n = int((length + 0.6) * SR); t = np.arange(n) / SR
+    sig = np.zeros(n)
+    for k in range(1, 9):
+        fk = k * f * np.sqrt(1 + 0.0004 * k * k)
+        if fk > SR * 0.45:
+            break
+        sig += np.sin(2 * np.pi * fk * t) * np.exp(-t * (1.1 + 0.0022 * f * k)) / k ** 1.3
+    hn = noise_hit((n + 2) / SR, 1500, 120, 0.15, int(f) % 97)[:n]
+    sig[:len(hn)] += hn
+    rel = np.clip(1 - (t - length) / 0.25, 0, 1)
+    return sig * np.where(t > length, rel, 1) * np.clip(t / 0.002, 0, 1) * 0.5
+
+
+def strings(f, length, bright=2800):
+    n = int((length + 0.35) * SR); t = np.arange(n) / SR
+    vib = 1 + 0.004 * np.sin(2 * np.pi * 5.4 * t) * np.clip(t * 4, 0, 1)
+    ph = np.cumsum(f * vib) / SR
+    sig = sum(2 * ((ph * (1 + d) + o) % 1) - 1 for d, o in ((-0.003, 0), (0, .37), (0.003, .71))) / 3
+    sig = biquad(biquad(sig, bright, 0.7), 180, kind="hp")
+    att = np.clip(t / 0.06, 0, 1)
+    rel = np.clip(1 - (t - length) / 0.3, 0, 1)
+    return sig * att * np.where(t > length, rel, 1) * 0.45
+
+
+def reed(f, length, musette=True):
+    """Accordion / bayan reed voice: 2-3 slightly detuned reeds beating against each other."""
+    n = int((length + 0.12) * SR); t = np.arange(n) / SR
+    dets = (-0.0045, 0.0, 0.0045) if musette else (0.0, 0.0015)
+    sig = np.zeros(n)
+    for i, d in enumerate(dets):
+        ph = (t * f * (1 + d) + i * 0.29) % 1
+        sig += 0.65 * (2 * ph - 1) + 0.35 * np.where(ph < 0.42, 1.0, -1.0)
+    sig /= len(dets)
+    sig = biquad(sig, 3600, 0.7) + 0.6 * biquad(sig, 1150, 1.6, kind="bp")
+    att = np.clip(t / 0.025, 0, 1)
+    rel = np.clip(1 - (t - length) / 0.08, 0, 1)
+    return sig * att * np.where(t > length, rel, 1) * 0.35
+
+
+def timpani(gain=0.6):
+    n = int(1.3 * SR); t = np.arange(n) / SR
+    s = np.sin(2 * np.pi * (88 + 18 * np.exp(-t * 20)) * t) * np.exp(-t * 3.0)
+    nz = np.zeros(n); h = noise_hit(1.3, 300, 25, 0.25, 41)[:n]; nz[:len(h)] = h
+    return (s + nz) * gain
+
+
+def m2f(m):
+    return 440.0 * 2 ** ((m - 69) / 12)
+
+
+def build_acoustic(dur, bpm, cuts, reveal, seed, festive, style):
+    rng = np.random.RandomState(seed)
+    n_total = int(dur * SR)
+    L = np.zeros(n_total); R = np.zeros(n_total)
+
+    def add(sig, t0, pan=0.0, gain=1.0):
+        i = int(t0 * SR)
+        if i >= n_total or i < 0:
+            return
+        m = min(len(sig), n_total - i)
+        L[i:i + m] += sig[:m] * gain * (1 - max(0, pan))
+        R[i:i + m] += sig[:m] * gain * (1 + min(0, pan))
+
+    if style == "mozart":
+        name = list(MOZART)[seed % len(MOZART)]
+        P = MOZART[name]
+        transpose = int(rng.choice([0, 0, -2, 2, -3]))
+        bpm = bpm or P["bpm"]
+        beat = 60.0 / bpm
+        bar = beat * P["beats"]
+        lead = piano if P["sound"] == "piano" else strings
+        t0, i = 0.0, 0
+        theme_len = sum(b for _, b in P["notes"])
+        while t0 < dur - 0.2:
+            m, b = P["notes"][i % len(P["notes"])]
+            if m is not None:
+                add(lead(m2f(m + transpose), b * beat * 0.95), t0, pan=-0.1, gain=1.0 if lead is piano else 0.8)
+            t0 += b * beat; i += 1
+        nb = int(dur / bar) + 1
+        for k in range(nb):
+            ch = [c + transpose for c in P["chords"][k % len(P["chords"])]]
+            b0 = k * bar
+            if P.get("alberti"):
+                order = [0, 2, 1, 2] * P["beats"]
+                for j in range(P["beats"] * 2):
+                    note = ch[order[j] % len(ch)]
+                    add(piano(m2f(note + (12 if note < 50 and j else 0)), beat * 0.45), b0 + j * beat / 2, pan=0.15, gain=0.45)
+            else:
+                add(strings(m2f(ch[0]), bar * 0.98, 1400), b0, pan=0.25, gain=0.55)
+                for c in ch[1:]:
+                    add(strings(m2f(c), bar * 0.98, 1800), b0, pan=0.3, gain=0.28)
+                for j in range(0, P["beats"], 2):
+                    add(piano(m2f(ch[0] - 12 if ch[0] > 40 else ch[0]), beat * 0.3), b0 + j * beat, pan=0.1, gain=0.35)
+        for c in cuts:
+            add(timpani(0.35), c)
+        last = [c + transpose for c in P["chords"][0]]
+        for c in last + [last[0] + 12, last[-1] + 12]:
+            add(strings(m2f(c), max(0.3, dur - reveal - 0.1), 3200), reveal, gain=0.45, pan=0.0)
+        add(timpani(0.7), reveal)
+        desc = f"style=mozart piece={name} transpose={transpose} bpm={int(bpm)} seed={seed}"
+        rv, sz = 0.35, 1.2
+    else:  # accordion / bayan
+        form = ["waltz", "polka", "tango"][rng.randint(0, 3)]
+        minor = rng.rand() < 0.65
+        root = 57 + rng.randint(-4, 5)  # around A3
+        sc = [0, 2, 3, 5, 7, 8, 11] if minor else [0, 2, 4, 5, 7, 9, 11]
+        bpm = bpm or {"waltz": rng.randint(150, 176), "polka": rng.randint(112, 126), "tango": rng.randint(108, 118)}[form]
+        beat = 60.0 / bpm
+        beats = {"waltz": 3, "polka": 2, "tango": 4}[form]
+        bar = beat * beats
+        prog = [[0, 3, 4, 0], [0, 5, 3, 4], [0, 3, 0, 4], [0, 4, 5, 3]][rng.randint(0, 4)]
+        bars_per = 2 if form == "waltz" else 1
+
+        def deg_m(d, octv=0):
+            o, k = divmod(d, 7)
+            return root + 12 * (o + octv) + sc[k]
+
+        def chord_deg(bar_i):
+            return prog[(bar_i // bars_per) % len(prog)]
+
+        rhythms = {"waltz": [[2, 1], [1, 1, 1], [3], [1.5, .5, 1]],
+                   "polka": [[.5, .5, .5, .5], [1, .5, .5], [.5, .5, 1], [.25, .25, .5, 1]],
+                   "tango": [[1.5, .5, 1, 1], [.75, .25, .5, .5, 2], [1, 1, .5, .5, 1], [1.5, 1.5, 1]]}[form]
+        nb = int(dur / bar) + 1
+        prev = 4
+        for k in range(nb):
+            b0 = k * bar
+            cd = chord_deg(k)
+            rh = rhythms[rng.randint(0, len(rhythms))] if k % 4 != 3 else [beats]
+            tt = b0
+            for j, r in enumerate(rh):
+                if j == 0 or rng.rand() < 0.5:
+                    target = cd + int(rng.choice([0, 2, 4, 7]))
+                else:
+                    target = prev + int(rng.choice([-1, 1, -2, 2]))
+                if k % 4 == 3:
+                    target = cd + (0 if (k // 4) % 2 else 2) + 7
+                prev = int(np.clip(target, 2, 12))
+                if tt < dur - 0.15:
+                    add(reed(m2f(deg_m(prev, 1)), r * beat * 0.92), tt, pan=-0.15, gain=0.9)
+                tt += r * beat
+            bass = deg_m(cd, -2); fifth = deg_m(cd + 4, -2)
+            tri = [deg_m(cd + x, -1) for x in (0, 2, 4)]
+            if form == "waltz":
+                hits = [(0, "b", bass), (1, "c", None), (2, "c", None)]
+            elif form == "polka":
+                hits = [(0, "b", bass), (.5, "c", None), (1, "b", fifth), (1.5, "c", None)]
+            else:
+                hits = [(0, "b", bass), (1.5, "b", fifth), (2, "c", None), (3, "c", None), (3.5, "c", None)]
+            for off, kind, note in hits:
+                ts = b0 + off * beat
+                if ts >= dur - 0.1:
+                    continue
+                if kind == "b":
+                    add(reed(m2f(note), beat * 0.45, musette=False), ts, pan=0.2, gain=0.8)
+                else:
+                    ch = sum(reed(m2f(x), beat * 0.22, musette=False) for x in tri) / 3
+                    add(ch, ts, pan=0.25, gain=0.7)
+        for c in cuts:
+            add(reed(m2f(deg_m(chord_deg(int(c / bar)), -2)), beat * 0.4, False), c, gain=0.6)
+        fin = [deg_m(x, 0) for x in (0, 2, 4, 7)]
+        add(sum(reed(m2f(x), max(0.3, dur - reveal - 0.1)) for x in fin) / 3, reveal, gain=1.0)
+        desc = f"style=accordion form={form} key={NOTE_NAMES[root % 12]} {'minor' if minor else 'major'} bpm={int(bpm)} seed={seed}"
+        rv, sz = 0.22, 0.9
+
+    if festive:
+        sb = noise_hit(0.12, 5000, 45, 0.08, 5)
+        b = 60.0 / bpm
+        for i, t0 in enumerate(np.arange(0, dur - 0.3, b / 2)):
+            add(sb, t0, pan=0.4 if i % 2 else -0.4, gain=0.8 if i % 2 else 0.5)
+    L = comb_reverb(L, rv, sz); R = comb_reverb(R, rv, sz * 1.07)
+    mix = np.stack([L, R], axis=1)
+    mix = biquad(mix.T, 35, kind="hp").T
+    mix /= max(1e-9, np.max(np.abs(mix)))
+    rms = np.sqrt((mix ** 2).mean())
+    mix = np.tanh(mix * min(3.0, max(1.0, 0.3 / max(rms, 1e-6))))  # gentle loudness match with the electronic styles
+    fo = int(0.25 * SR)
+    mix[-fo:] *= np.linspace(1, 0, fo)[:, None]
+    mix /= max(1e-9, np.max(np.abs(mix)))
+    return mix * 0.89, desc
 
 
 def pick(rng, seq):
@@ -236,6 +454,8 @@ def pick(rng, seq):
 
 
 def build(dur, bpm, cuts, reveal, seed, festive=False, style="auto"):
+    if style in ACOUSTIC:
+        return build_acoustic(dur, bpm, cuts, reveal, seed, festive, style)
     rng = np.random.RandomState(seed)
     names = list(STYLES)
     if style == "auto":
@@ -462,13 +682,13 @@ def main():
     ap.add_argument("--cuts", default="")
     ap.add_argument("--reveal", type=float, default=None)
     ap.add_argument("--seed", type=int, default=7)
-    ap.add_argument("--style", default="auto", help="auto or one of: " + ", ".join(STYLES))
+    ap.add_argument("--style", default="auto", help="auto, mozart, accordion or one of: " + ", ".join(STYLES))
     ap.add_argument("--festive", action="store_true", help="Christmas/New Year: sleigh bells + bell melody")
     ap.add_argument("--list", action="store_true")
     a = ap.parse_args()
     if a.list or not a.out:
-        print("styles:", ", ".join(STYLES)); return
-    if a.style != "auto" and a.style not in STYLES:
+        print("styles:", ", ".join(list(STYLES) + list(ACOUSTIC))); print("main rotation: deep_house -> mozart -> accordion"); return
+    if a.style != "auto" and a.style not in STYLES and a.style not in ACOUSTIC:
         sys.exit("unknown style; use --list")
     cuts = [float(x) for x in a.cuts.split(",") if x.strip()]
     reveal = a.reveal if a.reveal is not None else max(0.5, a.dur - 2)
