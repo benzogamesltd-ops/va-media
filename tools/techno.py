@@ -261,7 +261,8 @@ MOZART = {
         (83, .5), (81, .5), (79, .5), (81, .5), (83, .5), (81, .5), (79, .5), (78, .5), (76, 1)],
         chords=[[45, 57, 60, 64], [45, 57, 60, 64], [45, 57, 60, 64], [40, 56, 59, 62]]),
 }
-ACOUSTIC = ("mozart", "accordion")
+ACOUSTIC = ("mozart", "accordion", "classic_techno", "bayan_electro")
+HYBRID = {"classic_techno": "mozart", "bayan_electro": "accordion"}
 
 
 # ------------------------------------------------- acoustic instruments
@@ -319,6 +320,9 @@ def m2f(m):
 
 def build_acoustic(dur, bpm, cuts, reveal, seed, festive, style):
     rng = np.random.RandomState(seed)
+    hybrid = style in HYBRID
+    style = HYBRID.get(style, style)
+    roots = []  # (start time, midi root) for the hybrid synth bass
     n_total = int(dur * SR)
     L = np.zeros(n_total); R = np.zeros(n_total)
 
@@ -334,7 +338,7 @@ def build_acoustic(dur, bpm, cuts, reveal, seed, festive, style):
         name = list(MOZART)[seed % len(MOZART)]
         P = MOZART[name]
         transpose = int(rng.choice([0, 0, -2, 2, -3]))
-        bpm = bpm or P["bpm"]
+        bpm = bpm or (rng.randint(124, 129) if hybrid else P["bpm"])
         beat = 60.0 / bpm
         bar = beat * P["beats"]
         lead = piano if P["sound"] == "piano" else strings
@@ -349,6 +353,7 @@ def build_acoustic(dur, bpm, cuts, reveal, seed, festive, style):
         for k in range(nb):
             ch = [c + transpose for c in P["chords"][k % len(P["chords"])]]
             b0 = k * bar
+            roots.append((b0, ch[0]))
             if P.get("alberti"):
                 order = [0, 2, 1, 2] * P["beats"]
                 for j in range(P["beats"] * 2):
@@ -359,6 +364,8 @@ def build_acoustic(dur, bpm, cuts, reveal, seed, festive, style):
                 for c in ch[1:]:
                     add(strings(m2f(c), bar * 0.98, 1800), b0, pan=0.3, gain=0.28)
                 for j in range(0, P["beats"], 2):
+                    if hybrid:
+                        break
                     add(piano(m2f(ch[0] - 12 if ch[0] > 40 else ch[0]), beat * 0.3), b0 + j * beat, pan=0.1, gain=0.35)
         for c in cuts:
             add(timpani(0.35), c)
@@ -366,14 +373,14 @@ def build_acoustic(dur, bpm, cuts, reveal, seed, festive, style):
         for c in last + [last[0] + 12, last[-1] + 12]:
             add(strings(m2f(c), max(0.3, dur - reveal - 0.1), 3200), reveal, gain=0.45, pan=0.0)
         add(timpani(0.7), reveal)
-        desc = f"style=mozart piece={name} transpose={transpose} bpm={int(bpm)} seed={seed}"
+        desc = f"style={'classic_techno' if hybrid else 'mozart'} piece={name} transpose={transpose} bpm={int(bpm)} seed={seed}"
         rv, sz = 0.35, 1.2
     else:  # accordion / bayan
-        form = ["waltz", "polka", "tango"][rng.randint(0, 3)]
+        form = ["polka", "tango"][rng.randint(0, 2)] if hybrid else ["waltz", "polka", "tango"][rng.randint(0, 3)]
         minor = rng.rand() < 0.65
         root = 57 + rng.randint(-4, 5)  # around A3
         sc = [0, 2, 3, 5, 7, 8, 11] if minor else [0, 2, 4, 5, 7, 9, 11]
-        bpm = bpm or {"waltz": rng.randint(150, 176), "polka": rng.randint(112, 126), "tango": rng.randint(108, 118)}[form]
+        bpm = bpm or (rng.randint(124, 129) if hybrid else {"waltz": rng.randint(150, 176), "polka": rng.randint(112, 126), "tango": rng.randint(108, 118)}[form])
         beat = 60.0 / bpm
         beats = {"waltz": 3, "polka": 2, "tango": 4}[form]
         bar = beat * beats
@@ -409,6 +416,7 @@ def build_acoustic(dur, bpm, cuts, reveal, seed, festive, style):
                     add(reed(m2f(deg_m(prev, 1)), r * beat * 0.92), tt, pan=-0.15, gain=0.9)
                 tt += r * beat
             bass = deg_m(cd, -2); fifth = deg_m(cd + 4, -2)
+            roots.append((b0, bass))
             tri = [deg_m(cd + x, -1) for x in (0, 2, 4)]
             if form == "waltz":
                 hits = [(0, "b", bass), (1, "c", None), (2, "c", None)]
@@ -421,6 +429,8 @@ def build_acoustic(dur, bpm, cuts, reveal, seed, festive, style):
                 if ts >= dur - 0.1:
                     continue
                 if kind == "b":
+                    if hybrid:
+                        continue
                     add(reed(m2f(note), beat * 0.45, musette=False), ts, pan=0.2, gain=0.8)
                 else:
                     ch = sum(reed(m2f(x), beat * 0.22, musette=False) for x in tri) / 3
@@ -429,7 +439,7 @@ def build_acoustic(dur, bpm, cuts, reveal, seed, festive, style):
             add(reed(m2f(deg_m(chord_deg(int(c / bar)), -2)), beat * 0.4, False), c, gain=0.6)
         fin = [deg_m(x, 0) for x in (0, 2, 4, 7)]
         add(sum(reed(m2f(x), max(0.3, dur - reveal - 0.1)) for x in fin) / 3, reveal, gain=1.0)
-        desc = f"style=accordion form={form} key={NOTE_NAMES[root % 12]} {'minor' if minor else 'major'} bpm={int(bpm)} seed={seed}"
+        desc = f"style={'bayan_electro' if hybrid else 'accordion'} form={form} key={NOTE_NAMES[root % 12]} {'minor' if minor else 'major'} bpm={int(bpm)} seed={seed}"
         rv, sz = 0.22, 0.9
 
     if festive:
@@ -438,6 +448,55 @@ def build_acoustic(dur, bpm, cuts, reveal, seed, festive, style):
         for i, t0 in enumerate(np.arange(0, dur - 0.3, b / 2)):
             add(sb, t0, pan=0.4 if i % 2 else -0.4, gain=0.8 if i % 2 else 0.5)
     L = comb_reverb(L, rv, sz); R = comb_reverb(R, rv, sz * 1.07)
+    if hybrid:  # techno/electro beat + synth bass under the acoustic melody, with sidechain
+        beat = 60.0 / bpm; step = beat / 4
+        K = kick("techno" if style == "mozart" else "punch"); Dr = drums(rng)
+        DL = np.zeros(n_total); DR = np.zeros(n_total)
+
+        def dadd(sig, t0, pan=0.0, gain=1.0):
+            i = int(t0 * SR)
+            if i >= n_total:
+                return
+            m = min(len(sig), n_total - i)
+            DL[i:i + m] += sig[:m] * gain * (1 - max(0, pan)); DR[i:i + m] += sig[:m] * gain * (1 + min(0, pan))
+        hats = "x.xxx.xxx.xxx.xx" if style == "mozart" else "x.x.x.x.x.x.x.x."
+        kicks = []
+        for sidx in range(int(dur / step) + 1):
+            t0 = sidx * step
+            if t0 > dur - 0.05:
+                break
+            if sidx % 4 == 0:
+                dadd(K, t0); kicks.append(t0)
+            if sidx % 4 == 2:
+                dadd(Dr["ho"], t0, 0.25)
+            if hats[sidx % 16] == "x":
+                dadd(Dr["hc"], t0, -0.3, 0.8)
+            if sidx % 8 == 4:
+                dadd(Dr["clap"] if style == "mozart" else Dr["snare"], t0, 0.05, 0.8)
+            if style == "accordion" and sidx % 16 in (3, 11):
+                dadd(Dr["rim"], t0, -0.2)
+            if sidx % 4 != 0 and roots:
+                r = [m for (tb, m) in roots if tb <= t0 + 1e-6]
+                rm = (r[-1] if r else roots[0][1])
+                while rm > 45:
+                    rm -= 12
+                while rm < 33:
+                    rm += 12
+                n = int(step * 0.9 * SR)
+                b = biquad(osc("saw", m2f(rm), n), 420, 1.1) * env(n, 0.004, step * 0.7, 0.4, 0.04)
+                dadd(b * 0.5, t0)
+        tt = np.arange(n_total) / SR
+        ka = np.array(kicks)
+        idx = np.searchsorted(ka, tt, side="right") - 1
+        since = np.where(idx >= 0, tt - ka[np.clip(idx, 0, None)], 10)
+        g = 1 - 0.4 * np.exp(-since / 0.11)
+        L = L * g * 0.85 + DL; R = R * g * 0.85 + DR
+        n = int(1.0 * SR); bt = np.arange(n) / SR
+        for c in [0.0] + list(cuts) + [reveal]:
+            boom = np.sin(2 * np.pi * (38 + 70 * np.exp(-bt * 9)) * bt) * np.exp(-bt * 4)
+            i = int(c * SR); m = min(n, n_total - i)
+            if m > 0:
+                L[i:i + m] += boom[:m] * 0.5; R[i:i + m] += boom[:m] * 0.5
     mix = np.stack([L, R], axis=1)
     mix = biquad(mix.T, 35, kind="hp").T
     mix /= max(1e-9, np.max(np.abs(mix)))
@@ -687,7 +746,7 @@ def main():
     ap.add_argument("--list", action="store_true")
     a = ap.parse_args()
     if a.list or not a.out:
-        print("styles:", ", ".join(list(STYLES) + list(ACOUSTIC))); print("main rotation: deep_house -> mozart -> accordion"); return
+        print("styles:", ", ".join(list(STYLES) + list(ACOUSTIC))); print("rotation: electronic styles + deep_house; every 4th reel a hybrid: classic_techno / bayan_electro"); return
     if a.style != "auto" and a.style not in STYLES and a.style not in ACOUSTIC:
         sys.exit("unknown style; use --list")
     cuts = [float(x) for x in a.cuts.split(",") if x.strip()]
