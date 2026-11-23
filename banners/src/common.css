@@ -1,0 +1,11 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;font-family:'Montserrat',sans-serif}
+.st{position:relative;width:1080px;height:1350px;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(100px)}
+.star{position:absolute;border-radius:50%;background:#fff}
+.lock{position:absolute;left:90px;bottom:70px;display:flex;align-items:center;gap:18px}
+.sun{width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 42% 35%,#FFF7DE 0%,#FFC15E 48%,#F07A1A 100%);box-shadow:0 0 30px 8px rgba(255,190,90,.55);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:#3A1A00}
+.lock b{color:#fff;font-size:30px;font-weight:800}.lock span{display:block;font-family:'Inter';font-size:20px;font-weight:600;letter-spacing:.08em}
+.url{position:absolute;right:90px;bottom:84px;font-family:'Inter';font-weight:700;font-size:26px;color:#fff;padding:12px 22px;border-radius:40px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.35)}
+.scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 2px,transparent 2px 5px);pointer-events:none}
+.mono{font-family:'Inter',monospace;letter-spacing:.16em;font-weight:700}

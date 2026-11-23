@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-23",
+  "campaign": "Website launch × AI video editor agent",
+  "posts": [
+    {
+      "lang": "ru",
+      "time_berlin": "10:00",
+      "topic": "Кампания: наши ролики монтирует ИИ-агент — пайплайн от сценария до публикации (угол 1)",
+      "headline": "Наши ролики монтирует ИИ-агент",
+      "palette": "Aurora",
+      "banner_url": "https://raw.githubusercontent.com/benzogamesltd-ops/va-media/main/banners/2026-11-23-ru.jpg",
+      "fb_caption": "Наши ролики монтирует не человек, а ИИ-агент 🎬\n\nОн пишет сценарий, анимирует сцены, добавляет субтитры на трёх языках и оригинальный техно-трек.\nА потом сам публикует ролик в соцсети.\nРолики на нашем новом сайте сделаны именно так.\nТакие агенты мы создаём и для бизнеса 🤖\n\nСмотрите наши работы: https://va-corporation.github.io\n\n#ИИвидео #ИИагент #нейросети #автоматизация #видеомонтаж #искусственныйинтеллект #VACorporation",
+      "ig_caption": "Наши ролики монтирует не человек, а ИИ-агент 🎬\n\nСценарий → сцены → субтитры на трёх языках → техно-трек → публикация. Всё это делает наш агент.\nРолики на нашем новом сайте сделаны именно так, а таких агентов мы создаём и для бизнеса 🤖\n\nСайт — ссылка в профиле. Подписывайтесь на @va_video_maker\n\n#ИИвидео #ИИагент #нейросети #автоматизация #видеомонтаж #искусственныйинтеллект #контентмаркетинг #AIvideo #AIagent #AIautomation #videoediting #VACorporation",
+      "alt_text": "Бирюзово-зелёный баннер: светящаяся сфера ИИ-агента в центре, вокруг дугой пять узлов — Сценарий, Сцены, Субтитры, Техно-трек, Публикация. Заголовок «Наши ролики монтирует ИИ-агент», логотип VA Corporation и адрес va-corporation.github.io."
+    },
+    {
+      "lang": "de",
+      "time_berlin": "14:00",
+      "topic": "Kampagne: Launch der Website – Tour (Portfolio, KI-Reels, Chat-Assistent) (Winkel 4)",
+      "headline": "Unsere Website ist online!",
+      "palette": "Plasma",
+      "banner_url": "https://raw.githubusercontent.com/benzogamesltd-ops/va-media/main/banners/2026-11-23-de.jpg",
+      "fb_caption": "Es ist so weit: Unsere Website ist online! 🚀\n\nAuf va-corporation.github.io findet ihr unser Portfolio rund um KI-Agenten, Games und Software.\nDazu Reels, die unser eigener KI-Agent geschnitten, vertont und untertitelt hat.\nUnd einen Chat-Assistenten, der eure Fragen beantwortet ✨\n\nSchaut vorbei: https://va-corporation.github.io\n\n#KIVideo #KIAgent #KünstlicheIntelligenz #Website #Gameentwicklung #Softwareentwicklung #Digitalisierung #VACorporation",
+      "ig_caption": "Es ist so weit: Unsere Website ist online! 🚀\n\nPortfolio rund um KI-Agenten, Games und Software, Reels, die unser eigener KI-Agent geschnitten und vertont hat, und ein Chat-Assistent für eure Fragen ✨\n\nLink in Bio. Folgt @va_video_maker für mehr!\n\n#KIVideo #KIAgent #KünstlicheIntelligenz #Website #Gameentwicklung #Softwareentwicklung #Digitalisierung #AIvideo #AIagent #webdesign #gamedev #VACorporation",
+      "alt_text": "Banner mit Verlauf von Orange und Bernstein zu tiefem Indigo: ein leuchtender Planet mit weißem Ring, umgeben von Glas-Chips „AI“, „GAME“, „WEB“. Überschrift „Unsere Website ist online!“, Logo VA Corporation und Adresse va-corporation.github.io."
+    },
+    {
+      "lang": "en",
+      "time_berlin": "19:00",
+      "topic": "Campaign: your AI video editor never sleeps — what such an agent automates for a business (angle 2)",
+      "headline": "Your AI video editor never sleeps",
+      "palette": "Deep Indigo",
+      "banner_url": "https://raw.githubusercontent.com/benzogamesltd-ops/va-media/main/banners/2026-11-23-en.jpg",
+      "fb_caption": "Your AI video editor never sleeps 🌙\n\nIt's 3 AM and the agent is still rendering: scenes, subtitles in three languages, an original techno track, a cover.\nThen it publishes the video for you.\nThat's how our own reels are made — and we build agents like this for businesses too 🎬\n\nSee our work: https://va-corporation.github.io\n\n#AIvideo #AIagent #AIautomation #videoediting #contentcreation #smallbusiness #VACorporation",
+      "ig_caption": "Your AI video editor never sleeps 🌙\n\nScenes, subtitles in three languages, an original techno track, a cover, then posting. That's how our own reels are made, and we build agents like this for businesses too 🎬\n\nSee our work: link in bio. Follow @va_video_maker for more!\n\n#AIvideo #AIagent #AIautomation #videoediting #contentcreation #reels #smallbusiness #artificialintelligence #automation #videomarketing #techstartup #VACorporation",
+      "alt_text": "Deep indigo banner with a synthwave grid floor and a golden striped sun. A glass video-editor timeline shows scene clips, subtitle tracks in EN/DE/RU and a 128 BPM techno track at 03:12 AM. Headline: Your AI video editor never sleeps. VA Corporation logo and va-corporation.github.io."
+    }
+  ]
+}

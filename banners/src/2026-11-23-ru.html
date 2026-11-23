@@ -1,0 +1,44 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><link rel="stylesheet" href="common.css"><style>
+.st{background:radial-gradient(90% 60% at 50% 22%,#1BB5A0 0%,#0E8F7C 30%,#07463F 62%,#052E2B 100%)}
+.core{position:absolute;left:390px;top:200px;width:300px;height:300px;border-radius:50%;
+ background:radial-gradient(circle at 38% 32%,#F0FFF4 0%,#67E8F9 22%,#0E8F7C 60%,#053B36 100%);
+ box-shadow:0 0 120px 40px rgba(103,232,249,.45),inset -30px -40px 70px rgba(2,30,28,.7)}
+.halo{position:absolute;left:290px;top:100px;width:500px;height:500px;border-radius:50%;background:conic-gradient(from 0deg,transparent,rgba(163,230,53,.35),transparent 25%,rgba(103,232,249,.4),transparent 55%,rgba(250,204,21,.3),transparent 80%);filter:blur(8px)}
+.orb{position:absolute;border-radius:50%;border:2px dashed rgba(240,255,244,.35)}
+svg{position:absolute;left:0;top:0}
+.node{position:absolute;width:190px;text-align:center}
+.node .c{margin:0 auto;width:88px;height:88px;border-radius:50%;background:rgba(5,46,43,.75);border:2.5px solid #A3E635;box-shadow:0 0 26px rgba(163,230,53,.6);display:flex;align-items:center;justify-content:center;font-family:'Montserrat';font-weight:900;font-size:34px;color:#FACC15}
+.node .l{margin-top:12px;font-family:'Inter';font-weight:700;font-size:23px;color:#F0FFF4;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.tag{position:absolute;left:428px;top:316px;width:224px;text-align:center;font-size:20px;color:#052E2B}
+.h1{position:absolute;left:90px;top:770px;width:920px;color:#fff;font-weight:900;font-size:98px;line-height:1.0;letter-spacing:-.02em;text-shadow:0 6px 40px rgba(2,30,28,.7)}
+.h1 em{font-style:normal;color:#D9F99D;white-space:nowrap}
+.sub{position:absolute;left:90px;top:1095px;width:900px;color:#CCFBF1;font-family:'Inter';font-weight:600;font-size:34px;line-height:1.3}
+.lock span{color:#99F6E4}
+</style></head><body><div class="st" id="s">
+<div class="blob" style="left:-200px;top:520px;width:700px;height:500px;background:#0E8F7C;opacity:.5"></div>
+<div class="blob" style="left:650px;top:-150px;width:600px;height:500px;background:#67E8F9;opacity:.35"></div>
+<div class="orb" style="left:240px;top:50px;width:600px;height:600px"></div>
+<div class="halo"></div>
+<svg width="1080" height="800"><g fill="none" stroke-width="3">
+<path d="M180 470 Q 300 640 540 650 Q 780 640 900 470" stroke="rgba(163,230,53,.7)"/>
+<path d="M180 470 Q 230 300 330 250" stroke="rgba(103,232,249,.5)" stroke-dasharray="8 10"/>
+<path d="M900 470 Q 850 300 750 250" stroke="rgba(103,232,249,.5)" stroke-dasharray="8 10"/>
+<line x1="540" y1="500" x2="540" y2="600" stroke="rgba(250,204,21,.7)" stroke-dasharray="6 8"/>
+</g></svg>
+<div class="core"></div>
+<div class="tag mono">AGENT · EDIT</div>
+<div class="node" style="left:85px;top:420px"><div class="c">1</div><div class="l">Сценарий</div></div>
+<div class="node" style="left:235px;top:560px"><div class="c">2</div><div class="l">Сцены</div></div>
+<div class="node" style="left:445px;top:600px"><div class="c">3</div><div class="l">Субтитры</div></div>
+<div class="node" style="left:655px;top:560px"><div class="c">4</div><div class="l">Техно-трек</div></div>
+<div class="node" style="left:805px;top:420px"><div class="c">5</div><div class="l">Публикация</div></div>
+<div class="h1">Наши ролики<br>монтирует<br><em>ИИ&#8209;агент</em></div>
+<div class="sub">От сценария до публикации — без монтажёра.<br>Смотрите наши работы на сайте.</div>
+<div class="lock"><div class="sun">VA</div><div><b>VA Corporation</b><span>AI AGENTS · GAMES · SOFTWARE</span></div></div>
+<div class="url">va-corporation.github.io</div>
+<div class="scan"></div>
+</div><script>
+const s=document.getElementById('s');let seed=23;const r=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+for(let i=0;i<140;i++){const d=document.createElement('div');d.className='star';const z=r()*2.6+.6;
+d.style.cssText=`left:${r()*1080}px;top:${r()*760}px;width:${z}px;height:${z}px;opacity:${.15+r()*.6}`;s.insertBefore(d,s.children[2])}
+</script></body></html>
