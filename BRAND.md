@@ -42,7 +42,15 @@ VA Corporation builds **AI agents, games and IT products**. Tone: visionary, cin
 - Each banner must feel like a poster/key art, not a slide. Rich depth, light and texture.
 
 ## Reels
-- 1080×1920, 30 fps, 10–15 s, new scene every 1.5–2.5 s, hook in the first second, brand reveal at the end with CTA "Follow / Подпишись / Folgt uns".
+- 1080×1920, 30 fps, **8–12 s**, new scene every 1–2 s, brand reveal at the end with CTA "Follow / Подпишись / Folgt uns" (reveal ≤ 2 s).
+- **Retention rules (MANDATORY — data 2026-11-23: Facebook reel "How an AI agent thinks" had 244 views but avg watch 2 s, 3.4 % completion, biggest drop at 0:01; its first ~0.4 s was an empty dark gradient):**
+  1. **Frame 0 is never empty.** At t = 0 the full hook text and the hero visual are already on screen, bright and readable. No fade-in from black, no "build-up" intro. Animate *in place* instead (scale punch 1.08→1, glow pulse, camera push, glitch flicker).
+  2. **Hook = 3–6 huge words** (≥ 120 px, Montserrat 800–900, center of the frame between 30 % and 60 % height — clear of the top status bar and the bottom caption/UI), max contrast. Use curiosity, a bold claim that is true, or a direct "you": e.g. "This video was made by AI", "Your next employee never sleeps", "Stop doing this by hand", "Watch an AI build this in 10 s". Avoid soft lecture titles like "How X works".
+  3. **Something changes every ~0.7 s in the first 3 s** (pattern interrupts: a number counting, a card slamming in, a color flash, a zoom) and a visible payoff promise ("wait for #3", progress dots, a counter).
+  4. **Make it loop**: the last frame flows back into the first (same background/hero position) so replays count; keep the brand reveal short.
+  5. Music hits on frame 0 (no silent intro): kick + impact at t = 0.
+  6. The cover is a separate bold frame, but the video's own first frame must also work as a thumbnail.
+- **Captions**: first line ≤ 8 words that repeat the hook + a question to the viewer; hashtags at the end.
 - Subtitles: main language line big, smaller English line under it (unless the reel is English).
 - Music: original **techno** generated in code (numpy), 125–132 BPM, four-on-the-floor kick with long sub tail, offbeat open hi-hats + 16th closed hats, clap on 2 and 4, rolling 16th-note bassline, an acid-style resonant filtered saw/square lead (303 feel) with filter sweep, white-noise risers before scene cuts and the brand reveal, impact hit on the logo, short fade-out. Normalize to about -1 dBFS, stereo if possible.
 - Cover: 1080×1920 JPEG, hook text centered so the 3:4 profile-grid crop keeps it.
