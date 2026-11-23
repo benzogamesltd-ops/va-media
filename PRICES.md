@@ -28,5 +28,5 @@ Monthly maintenance/support depends on project complexity — never quote a fixe
 
 ## Rules for the reply agent
 - When someone asks about price: give the relevant "from" price(s) + "plus VAT", say the exact quote comes after a short free consultation, and invite them to WhatsApp/Telegram +34 641 387 122.
-- Price banners: EN https://raw.githubusercontent.com/benzogamesltd-ops/va-media/main/banners/price-en.jpg , RU .../banners/price-ru.jpg (RU banner still shows "без НДС" + "сопровождение от 49 €/мес" — do NOT send the RU banner until it is updated; quote RU prices in text).
+- Price banners: EN https://raw.githubusercontent.com/benzogamesltd-ops/va-media/main/banners/price-en.jpg , RU .../banners/price-ru.jpg.
 - Never give discounts, never promise deadlines beyond "from", never invent products not in this list.
