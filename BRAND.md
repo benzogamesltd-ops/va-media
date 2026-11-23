@@ -52,7 +52,7 @@ VA Corporation builds **AI agents, games and IT products**. Tone: visionary, cin
   6. The cover is a separate bold frame, but the video's own first frame must also work as a thumbnail.
 - **Captions**: first line ≤ 8 words that repeat the hook + a question to the viewer; hashtags at the end.
 - Subtitles: main language line big, smaller English line under it (unless the reel is English).
-- Music: original **techno** generated in code (numpy), 125–132 BPM, four-on-the-floor kick with long sub tail, offbeat open hi-hats + 16th closed hats, clap on 2 and 4, rolling 16th-note bassline, an acid-style resonant filtered saw/square lead (303 feel) with filter sweep, white-noise risers before scene cuts and the brand reveal, impact hit on the logo, short fade-out. Normalize to about -1 dBFS, stereo if possible.
+- Music: original electronic track generated in code by `tools/techno.py` — **every reel gets a different track**. 9 styles: acid_techno, melodic_techno, hard_techno, minimal, trance, synthwave, drum_and_bass, electro, tech_house; key, scale, tempo, groove, bassline, melody and chords come from the seed. Use a NEW random seed every run and do not repeat any style used in the last 3 reels (see reels/LOG.md; pass --style explicitly). Match the mood: calm/premium → melodic_techno or synthwave; energetic/bold → hard_techno, trance or drum_and_bass; playful → minimal, electro, tech_house. The script prints "style=… key=… bpm=…" — write it into reels/LOG.md. The track hits on t=0 and ends without a long fade (loopable).
 - Cover: 1080×1920 JPEG, hook text centered so the 3:4 profile-grid crop keeps it.
 
 ## Honesty
