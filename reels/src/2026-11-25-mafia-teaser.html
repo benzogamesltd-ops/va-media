@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;font-family:Inter,Arial,sans-serif;color:#fff;
+background:radial-gradient(900px 700px at 50% 45%,#16357A 0%,#0A1638 55%,#040814 100%)}
+.bg{position:absolute;inset:0}
+.beam{position:absolute;left:50%;top:-200px;width:900px;height:1700px;margin-left:-450px;
+background:radial-gradient(ellipse at 50% 0%,rgba(190,225,255,.35),transparent 65%);animation:beam 4s ease-in-out infinite}
+@keyframes beam{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+.rain i{position:absolute;width:2px;height:60px;background:linear-gradient(transparent,rgba(180,210,255,.35));animation:rain 1s linear infinite}
+@keyframes rain{from{transform:translateY(-200px)}to{transform:translateY(2100px)}}
+.sc{position:absolute;inset:0;opacity:0;animation-duration:23s;animation-iteration-count:infinite;animation-timing-function:linear}
+.s1{animation-name:a1;opacity:1}.s2{animation-name:a2}.s3{animation-name:a3}.s4{animation-name:a4}.s5{animation-name:a5}
+@keyframes a1{0%,17.6%{opacity:1}18.9%,98.7%{opacity:0}100%{opacity:1}}
+@keyframes a2{0%,17.6%{opacity:0}18.9%,39.4%{opacity:1}40.7%,100%{opacity:0}}
+@keyframes a3{0%,39.4%{opacity:0}40.7%,61.1%{opacity:1}62.4%,100%{opacity:0}}
+@keyframes a4{0%,61.1%{opacity:0}62.4%,86.3%{opacity:1}87.6%,100%{opacity:0}}
+@keyframes a5{0%,86.3%{opacity:0}87.6%,98.7%{opacity:1}100%{opacity:0}}
+h1{font:900 132px/0.95 Montserrat,sans-serif;letter-spacing:-3px;text-align:center;text-shadow:0 8px 40px rgba(0,0,0,.6)}
+h1 em{font-style:normal;color:#FF4B3E}
+.gold{color:#FFC94D}
+.sub{font:800 60px/1.2 Inter,sans-serif;text-align:center;color:#D6E6FF;text-shadow:0 4px 20px rgba(0,0,0,.7)}
+.stamp{display:inline-block;font:900 56px Montserrat,sans-serif;letter-spacing:4px;color:#FFC94D;border:6px solid #FFC94D;border-radius:14px;padding:12px 30px;transform:rotate(-6deg);background:rgba(4,8,20,.55)}
+/* S1 */
+.mug{position:absolute;left:150px;top:640px;width:780px;border:22px solid #F3EDE2;border-bottom-width:70px;border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.6);transform:rotate(-3deg);animation:mug 23s ease-in-out infinite}
+@keyframes mug{0%{transform:rotate(-3deg) scale(1)}10%{transform:rotate(-2deg) scale(1.04)}20%{transform:rotate(-3deg) scale(1.06)}100%{transform:rotate(-3deg) scale(1)}}
+.mug img{display:block;width:100%}
+.s1 h1{position:absolute;top:250px;left:0;right:0}
+.s1 .stamp{position:absolute;left:0;right:0;margin:auto;width:max-content;top:1640px;animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:rotate(-6deg) scale(1)}50%{transform:rotate(-6deg) scale(1.06)}}
+/* S2 */
+.wide{position:absolute;left:0;width:1080px;display:block;box-shadow:0 0 0 4px rgba(255,201,77,.6),0 30px 80px rgba(0,0,0,.6)}
+.s2 .wide{top:700px;animation:push 23s linear infinite}
+@keyframes push{0%{transform:scale(1)}100%{transform:scale(1.25)}}
+.s2 h1{position:absolute;top:300px;left:0;right:0}
+.s2 .sub{position:absolute;top:1430px;left:60px;right:60px}
+/* S3 */
+.s3 .wide{top:760px;transform-origin:left center;animation:pan 23s linear infinite}
+@keyframes pan{0%{transform:scale(1.2) translateX(0)}100%{transform:scale(1.2) translateX(-60px)}}
+.s3 h1{position:absolute;top:320px;left:0;right:0}
+.s3 .sub{position:absolute;top:1340px;left:60px;right:60px}
+/* S4 */
+.logo{position:absolute;left:0;right:0;margin:auto;top:560px;width:900px;filter:drop-shadow(0 20px 50px rgba(0,0,0,.7));animation:lg 23s ease-in-out infinite}
+@keyframes lg{0%,61%{transform:scale(.96)}70%{transform:scale(1.04)}86%{transform:scale(1)}100%{transform:scale(.96)}}
+.s4 .date{position:absolute;top:1010px;left:0;right:0;text-align:center;font:900 120px Montserrat,sans-serif;color:#FFC94D;text-shadow:0 0 40px rgba(255,201,77,.5)}
+.s4 .sub{position:absolute;top:1200px;left:60px;right:60px}
+.s4 .stamp{position:absolute;left:0;right:0;margin:auto;width:max-content;top:1420px}
+/* S5 */
+.sun{position:absolute;left:390px;top:560px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle at 38% 35%,#FFF7DE,#FFC15E 45%,#F07A1A);
+box-shadow:0 0 120px rgba(255,193,94,.9);display:flex;align-items:center;justify-content:center;font:900 110px Montserrat,sans-serif;color:#3B1D00;animation:sg 2s ease-in-out infinite}
+@keyframes sg{0%,100%{box-shadow:0 0 90px rgba(255,193,94,.8)}50%{box-shadow:0 0 170px rgba(255,193,94,1)}}
+.s5 .name{position:absolute;top:920px;left:0;right:0;text-align:center;font:900 92px Montserrat,sans-serif}
+.s5 .tag{position:absolute;top:1030px;left:0;right:0;text-align:center;font:700 34px Inter,sans-serif;letter-spacing:6px;color:#9FC7FF}
+.s5 .cta{position:absolute;top:1170px;left:0;right:0;text-align:center;font:900 72px Montserrat,sans-serif;color:#FFC94D}
+.s5 .url{position:absolute;top:1290px;left:0;right:0;text-align:center;font:800 50px Inter,sans-serif}
+.s5 .small{position:absolute;top:1380px;left:0;right:0;text-align:center;font:700 44px Inter,sans-serif;color:#D6E6FF}
+</style></head><body>
+<div class="bg"><div class="beam"></div><div class="rain">
+<i style="left:80px;animation-delay:-.1s"></i><i style="left:210px;animation-delay:-.6s"></i><i style="left:340px;animation-delay:-.3s"></i><i style="left:470px;animation-delay:-.8s"></i><i style="left:600px;animation-delay:-.2s"></i><i style="left:730px;animation-delay:-.5s"></i><i style="left:860px;animation-delay:-.9s"></i><i style="left:990px;animation-delay:-.4s"></i><i style="left:140px;animation-delay:-.7s"></i><i style="left:930px;animation-delay:-.15s"></i></div></div>
+
+<div class="sc s1">
+ <h1>Who is the<br><em>MAFIA?</em></h1>
+ <div class="mug"><img src="assets/mafia/mug_x.png"></div>
+ <div class="stamp">JANUARY 2027</div>
+</div>
+<div class="sc s2">
+ <h1>Trust<br><span class="gold">no one.</span></h1>
+ <img class="wide" src="assets/mafia/spot_x.png">
+ <div class="sub">Cop. Doctor. Mafia.<br>Who is lying?</div>
+</div>
+<div class="sc s3">
+ <h1>Play with<br><span class="gold">friends.</span></h1>
+ <img class="wide" src="assets/mafia/lineup_x.png">
+ <div class="sub">Find the mafia<br>before it finds you.</div>
+</div>
+<div class="sc s4">
+ <img class="logo" src="assets/mafia/logo_x.png">
+ <div class="date">JANUARY 2027</div>
+ <div class="sub">Our new game is coming.</div>
+ <div class="stamp">COMING SOON</div>
+</div>
+<div class="sc s5">
+ <div class="sun notranslate">VA</div>
+ <div class="name">VA Corporation</div>
+ <div class="tag">AI AGENTS · GAMES · SOFTWARE</div>
+ <div class="cta">Follow us</div>
+ <div class="url">va-corporation.github.io</div>
+ <div class="small">Mafia Online · January 2027</div>
+</div>
+</body></html>
