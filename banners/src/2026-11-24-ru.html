@@ -1,0 +1,42 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><link rel="stylesheet" href="common.css"><style>
+.st{background:radial-gradient(110% 75% at 50% 25%,#5B21B6 0%,#1E1B6B 45%,#0B1033 100%)}
+.core{position:absolute;left:390px;top:230px;width:300px;height:300px;border-radius:50%;
+ background:radial-gradient(circle at 40% 35%,#FFFFFF 0%,#A5F3FC 18%,#22D3EE 42%,#1E3A8A 85%,#0B1033 100%);
+ box-shadow:0 0 120px 40px rgba(34,211,238,.45),0 0 260px 90px rgba(37,99,235,.45)}
+.halo{position:absolute;left:290px;top:130px;width:500px;height:500px;border-radius:50%;background:conic-gradient(from 0deg,transparent,rgba(34,211,238,.35),transparent 25%,rgba(125,211,252,.3),transparent 55%,rgba(34,211,238,.25),transparent 80%);filter:blur(8px)}
+.orbit{position:absolute;left:540px;top:380px;border-radius:50%;border:2.5px solid rgba(165,243,252,.55);transform:translate(-50%,-50%) rotate(var(--r));box-shadow:0 0 18px rgba(34,211,238,.35)}
+.orbit.dash{border-style:dashed;border-color:rgba(250,204,21,.6)}
+.node{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:12px}
+.node i{display:block;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#FACC15 55%,#B45309);box-shadow:0 0 22px 6px rgba(250,204,21,.6)}
+.node.c i{background:radial-gradient(circle at 35% 30%,#fff,#22D3EE 55%,#0E7490);box-shadow:0 0 22px 6px rgba(34,211,238,.6)}
+.node span{font-family:'Inter';font-size:19px;font-weight:700;letter-spacing:.16em;color:#fff;padding:8px 14px;border-radius:12px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.3);backdrop-filter:blur(10px)}
+.tag{position:absolute;left:90px;top:96px;color:#67E8F9;font-size:19px}
+.tag i{display:inline-block;width:12px;height:12px;border-radius:50%;background:#A3E635;box-shadow:0 0 12px #A3E635;margin-right:10px}
+.loop{position:absolute;right:90px;top:92px;color:#FACC15;font-size:19px}
+.h1{position:absolute;left:90px;top:760px;width:920px;color:#fff;font-weight:900;font-size:100px;line-height:1.0;letter-spacing:-.02em;text-shadow:0 6px 40px rgba(11,16,51,.8)}
+.h1 em{font-style:normal;background:linear-gradient(90deg,#FACC15,#22D3EE);-webkit-background-clip:text;color:transparent}
+.sub{position:absolute;left:90px;top:1072px;width:900px;color:#DDE3FF;font-family:'Inter';font-weight:600;font-size:34px;line-height:1.3}
+.lock span{color:#A5B4FC}
+</style></head><body><div class="st" id="s">
+<div class="blob" style="left:-180px;top:520px;width:600px;height:520px;background:#0891B2;opacity:.35"></div>
+<div class="blob" style="left:700px;top:-120px;width:520px;height:480px;background:#2563EB;opacity:.4"></div>
+<div class="halo"></div>
+<div class="orbit" style="width:860px;height:300px;--r:-12deg"></div>
+<div class="orbit dash" style="width:700px;height:520px;--r:18deg"></div>
+<div class="orbit" style="width:560px;height:200px;--r:24deg;opacity:.7"></div>
+<div class="core"></div>
+<div class="node" style="left:150px;top:420px"><i></i><span>INPUT</span></div>
+<div class="node c" style="left:760px;top:180px"><i></i><span>LOGIC</span></div>
+<div class="node" style="left:880px;top:560px"><span>RENDER</span><i></i></div>
+<div class="node c" style="left:300px;top:640px"><i></i><span>PLAYTEST</span></div>
+<div class="tag mono"><i></i>PROTOTYPE_v0.1 · RUNNING</div>
+<div class="loop mono">GAME LOOP · 60 FPS</div>
+<div class="h1">Каждая игра<br>начинается<br><em>с прототипа</em></div>
+<div class="sub">Сначала проверяем, что играть весело —<br>потом строим целый мир.</div>
+<div class="lock"><div class="sun">VA</div><div><b>VA Corporation</b><span>AI AGENTS · GAMES · SOFTWARE</span></div></div>
+<div class="scan"></div>
+</div><script>
+const s=document.getElementById('s');let seed=24;const r=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+for(let i=0;i<180;i++){const d=document.createElement('div');d.className='star';const z=r()*2.6+.6;
+d.style.cssText=`left:${r()*1080}px;top:${r()*760}px;width:${z}px;height:${z}px;opacity:${.2+r()*.7}`;s.insertBefore(d,s.children[2])}
+</script></body></html>
