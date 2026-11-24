@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;font-family:"Inter",Arial,sans-serif;color:#F4FBF8;position:relative;overflow:hidden;
+background:radial-gradient(700px 420px at 50% -60px,rgba(255,200,90,.35),transparent 70%),
+radial-gradient(900px 500px at 0% 40%,rgba(20,184,166,.28),transparent 65%),
+radial-gradient(800px 500px at 100% 75%,rgba(56,189,248,.22),transparent 65%),
+linear-gradient(170deg,#041A1C 0%,#062B2E 45%,#071E2E 100%)}
+.grid{position:absolute;left:-200px;right:-200px;bottom:-40px;height:420px;
+background-image:linear-gradient(rgba(94,234,212,.22) 2px,transparent 2px),linear-gradient(90deg,rgba(94,234,212,.22) 2px,transparent 2px);
+background-size:90px 90px;transform:perspective(500px) rotateX(62deg);transform-origin:bottom;opacity:.55;
+-webkit-mask-image:linear-gradient(to top,#000 20%,transparent 95%)}
+.stars i{position:absolute;width:3px;height:3px;border-radius:50%;background:#CFFAFE;opacity:.7}
+.wrap{position:relative;padding:58px 64px 0}
+.tag{display:inline-flex;align-items:center;gap:12px;background:rgba(255,200,90,.14);border:2px solid rgba(255,200,90,.6);color:#FFD27A;
+font:800 24px Montserrat,sans-serif;letter-spacing:3px;padding:10px 22px;border-radius:40px}
+.dot{width:12px;height:12px;border-radius:50%;background:#34D399;box-shadow:0 0 14px #34D399}
+h1{font:900 96px/0.98 Montserrat,sans-serif;letter-spacing:-3px;margin-top:26px}
+h1 em{font-style:normal;background:linear-gradient(90deg,#FFE29A,#FFB547);-webkit-background-clip:text;color:transparent}
+.lead{font:600 30px Inter,sans-serif;color:#99F6E4;margin-top:18px}
+.list{margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.it{background:rgba(255,255,255,.06);border:1.5px solid rgba(94,234,212,.30);border-radius:22px;padding:20px 24px;backdrop-filter:blur(6px)}
+.it .n{font:700 25px Inter,sans-serif;color:#E6FFFA;line-height:1.2}
+.it .p{font:900 44px Montserrat,sans-serif;color:#FFC75A;margin-top:6px;letter-spacing:-1px}
+.it .p small{font:700 22px Inter,sans-serif;color:#99F6E4;margin-right:6px;letter-spacing:0}
+.it .p span{font:700 20px Inter,sans-serif;color:#99F6E4}
+.cta{margin-top:26px;display:flex;gap:16px}
+.btn{flex:1;border-radius:22px;padding:20px 24px;display:flex;align-items:center;gap:16px}
+.wa{background:linear-gradient(135deg,#16A34A,#22C55E);box-shadow:0 10px 40px rgba(34,197,94,.35)}
+.web{background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.35)}
+.btn b{display:block;font:900 32px Montserrat,sans-serif;color:#fff;white-space:nowrap}
+.btn s{text-decoration:none;font:600 20px Inter,sans-serif;color:#E6FFFA;display:block}
+.ic{width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:30px;flex:none}
+.vat{margin-top:20px;text-align:center;font:600 22px Inter,sans-serif;color:#CCFBF1}
+.vat b{color:#FFD27A}
+.lock{position:absolute;left:0;right:0;bottom:42px;display:flex;justify-content:center;align-items:center;gap:18px}
+.sun{width:70px;height:70px;border-radius:50%;background:radial-gradient(circle at 38% 35%,#FFF7DE,#FFC15E 45%,#F07A1A);box-shadow:0 0 44px rgba(255,193,94,.7);
+display:flex;align-items:center;justify-content:center;font:900 26px Montserrat,sans-serif;color:#3B1D00}
+.lock .t b{font:900 32px Montserrat,sans-serif;display:block}
+.lock .t span{font:700 17px Inter,sans-serif;letter-spacing:3px;color:#99F6E4}
+</style></head><body>
+<div class="grid"></div>
+<div class="stars"><i style="left:120px;top:300px"></i><i style="left:930px;top:180px"></i><i style="left:820px;top:420px"></i><i style="left:60px;top:90px"></i><i style="left:600px;top:60px"></i><i style="left:1010px;top:560px"></i></div>
+<div class="wrap">
+ <div class="tag"><span class="dot"></span>NOW HIRING: AI</div>
+ <h1>Your next employee<br><em>never sleeps.</em></h1>
+ <div class="lead">AI agents, bots, websites &amp; games, built for your business.</div>
+ <div class="list">
+  <div class="it"><div class="n">🤖 24/7 support agent</div><div class="p"><small>from</small>€790</div></div>
+  <div class="it"><div class="n">💬 Telegram bot</div><div class="p"><small>from</small>€190</div></div>
+  <div class="it"><div class="n">🌐 Landing page</div><div class="p"><small>from</small>€390</div></div>
+  <div class="it"><div class="n">🌍 Multilingual site + SEO</div><div class="p"><small>from</small>€990</div></div>
+  <div class="it"><div class="n">🎬 AI SMM: reels + banners</div><div class="p"><small>from</small>€299<span> /mo</span></div></div>
+  <div class="it"><div class="n">⚙️ Automation (n8n)</div><div class="p"><small>from</small>€290</div></div>
+ </div>
+ <div class="cta">
+  <div class="btn wa"><div class="ic">📲</div><div><b>+34 641 387 122</b><s>WhatsApp / Telegram · free consult</s></div></div>
+  <div class="btn web"><div class="ic">🌐</div><div><b>All prices</b><s>va-corporation.github.io</s></div></div>
+ </div>
+ <div class="vat">All prices <b>+ VAT</b> · Monthly maintenance depends on project complexity</div>
+</div>
+<div class="lock"><div class="sun notranslate">VA</div><div class="t"><b>VA Corporation</b><span>AI AGENTS · GAMES · SOFTWARE</span></div></div>
+</body></html>
