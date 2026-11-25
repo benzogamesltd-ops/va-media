@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;font-family:Inter,Arial,sans-serif;color:#fff;position:relative;
+background:radial-gradient(700px 500px at 50% 0%,rgba(212,175,55,.22),transparent 70%),radial-gradient(900px 700px at 50% 60%,#0F5A3E 0%,#0A3D2B 55%,#062619 100%)}
+/* silver frame */
+.frame{position:absolute;inset:18px;border-radius:26px;padding:14px;
+background:linear-gradient(135deg,#F4F6F8 0%,#9DA6AE 18%,#E9EDF0 34%,#7E8790 52%,#F1F3F5 68%,#A3ACB4 84%,#ECEFF2 100%);
+box-shadow:0 0 0 2px #5E666E inset,0 20px 60px rgba(0,0,0,.5)}
+.inner{position:relative;width:100%;height:100%;border-radius:16px;overflow:hidden;
+background:radial-gradient(700px 420px at 50% -40px,rgba(230,195,90,.25),transparent 70%),linear-gradient(170deg,#0E5139 0%,#0A3E2C 50%,#072B1E 100%);
+box-shadow:0 0 0 3px #C9A43A inset,0 0 0 7px rgba(6,38,25,1) inset,0 0 0 9px rgba(233,200,110,.7) inset}
+.corner{position:absolute;width:70px;height:70px;border:3px solid #E5C46B}
+.c1{top:22px;left:22px;border-right:0;border-bottom:0;border-radius:14px 0 0 0}.c2{top:22px;right:22px;border-left:0;border-bottom:0;border-radius:0 14px 0 0}
+.c3{bottom:22px;left:22px;border-right:0;border-top:0;border-radius:0 0 0 14px}.c4{bottom:22px;right:22px;border-left:0;border-top:0;border-radius:0 0 14px 0}
+.top{text-align:center;padding-top:80px}
+.kick{display:inline-block;font:800 22px Montserrat,sans-serif;letter-spacing:5px;color:#F3D98B;border:2px solid rgba(229,196,107,.8);border-radius:40px;padding:8px 22px}
+h1{font:900 72px/1.02 Montserrat,sans-serif;letter-spacing:-2px;margin-top:20px}
+h1 em{font-style:normal;background:linear-gradient(180deg,#FFF1B8,#E5C46B 55%,#B8892B);-webkit-background-clip:text;color:transparent}
+.sub{font:600 27px Inter,sans-serif;color:#D9EFE4;margin-top:14px}
+.cards{display:flex;gap:26px;padding:46px 44px 0}
+.card{flex:1;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.05));border:2px solid rgba(220,226,230,.55);border-radius:22px;padding:26px 24px;position:relative}
+.card::before{content:"";position:absolute;inset:6px;border:1px solid rgba(229,196,107,.45);border-radius:16px;pointer-events:none}
+.ic{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:44px;
+background:radial-gradient(circle at 35% 30%,#FFF6D2,#E5C46B 55%,#A97E25);box-shadow:0 0 30px rgba(229,196,107,.5)}
+.card h2{font:900 36px/1.05 Montserrat,sans-serif;margin-top:16px}
+.card h2 span{color:#F3D98B}
+.card ul{list-style:none;margin-top:16px}
+.card li{font:600 23px/1.3 Inter,sans-serif;color:#EAF6F0;padding-left:30px;position:relative;margin-top:10px}
+.card li::before{content:"✓";position:absolute;left:0;color:#E5C46B;font-weight:900}
+.price{margin:42px 44px 0;text-align:center;border-radius:20px;padding:18px;background:linear-gradient(90deg,#B8892B,#F3D98B,#B8892B);color:#1D2A12}
+.price b{font:900 44px Montserrat,sans-serif}
+.price s{text-decoration:none;display:block;font:700 20px Inter,sans-serif;margin-top:2px}
+.cta{display:flex;gap:18px;margin:30px 44px 0}
+.btn{flex:1;border-radius:18px;padding:16px 20px;text-align:center}
+.wa{background:#fff;color:#0A3D2B}.web{border:2px solid #DCE2E6;color:#fff}
+.btn b{display:block;font:900 30px Montserrat,sans-serif}.btn s{text-decoration:none;font:700 19px Inter,sans-serif;opacity:.85}
+.lock{position:absolute;left:0;right:0;bottom:56px;display:flex;justify-content:center;align-items:center;gap:16px}
+.sun{width:62px;height:62px;border-radius:50%;background:radial-gradient(circle at 38% 35%,#FFF7DE,#FFC15E 45%,#F07A1A);box-shadow:0 0 36px rgba(255,193,94,.7);display:flex;align-items:center;justify-content:center;font:900 23px Montserrat,sans-serif;color:#3B1D00}
+.lock b{font:900 28px Montserrat,sans-serif;display:block}.lock span{font:700 16px Inter,sans-serif;letter-spacing:3px;color:#CFE6DA}
+</style></head><body>
+<div class="frame"><div class="inner">
+<div class="corner c1"></div><div class="corner c2"></div><div class="corner c3"></div><div class="corner c4"></div>
+<div class="top">
+ <div class="kick">FOR SMALL BUSINESS</div>
+ <h1>2 AI employees.<br><em>Zero days off.</em></h1>
+ <div class="sub">They work 24/7 so you don't have to.</div>
+</div>
+<div class="cards">
+ <div class="card"><div class="ic">🏠</div><h2>AI <span>Realtor</span><br>Agent</h2>
+  <ul><li>Answers buyers &amp; tenants 24/7</li><li>Sends matching listings</li><li>Books viewings in your calendar</li><li>Only warm, qualified leads</li></ul></div>
+ <div class="card"><div class="ic">📅</div><h2>AI <span>Personal</span><br>Assistant</h2>
+  <ul><li>Handles messages &amp; bookings</li><li>Reminds clients &amp; follows up</li><li>Drafts emails in seconds</li><li>Keeps tasks &amp; schedule in order</li></ul></div>
+</div>
+<div class="price"><b>AI agents from €490</b><s>+ VAT · Monthly maintenance depends on project complexity</s></div>
+<div class="cta">
+ <div class="btn wa"><b>📲 +34 641 387 122</b><s>WhatsApp · free consultation</s></div>
+ <div class="btn web"><b>🌐 Prices</b><s>va-corporation.github.io</s></div>
+</div>
+<div class="lock"><div class="sun notranslate">VA</div><div><b>VA Corporation</b><span>AI AGENTS · GAMES · SOFTWARE</span></div></div>
+</div></div>
+</body></html>
