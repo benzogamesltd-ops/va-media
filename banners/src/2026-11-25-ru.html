@@ -1,0 +1,46 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><link rel="stylesheet" href="common.css"><style>
+.st{background:linear-gradient(180deg,#0B1033 0%,#16205E 48%,#1E2A78 100%)}
+.sunset{position:absolute;left:300px;top:330px;width:480px;height:500px;border-radius:50%;
+ background:linear-gradient(180deg,#FFF1C9 0%,#FFC15E 45%,#F07A1A 100%);box-shadow:0 0 140px 40px rgba(255,170,70,.35);
+ -webkit-mask-image:repeating-linear-gradient(180deg,#000 0 34px,transparent 34px 44px);mask-image:linear-gradient(180deg,#000 0 52%,transparent 52%),repeating-linear-gradient(180deg,#000 0 30px,transparent 30px 42px)}
+.sunglow{position:absolute;left:190px;top:200px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(255,193,94,.28),transparent 65%)}
+.horizon{position:absolute;z-index:2;left:0;top:650px;width:1080px;height:3px;background:linear-gradient(90deg,transparent,#7DD3FC,#FFC15E,#7DD3FC,transparent);box-shadow:0 0 30px #7DD3FC}
+.floor{position:absolute;left:0;top:652px;width:1080px;height:708px;background:linear-gradient(180deg,#121B52,#0B1033)}
+.fw{position:absolute;left:0;top:652px;width:1080px;height:520px;overflow:hidden;perspective:500px;perspective-origin:50% 0;z-index:1;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 45%,transparent 100%)}
+.grid{position:absolute;left:-1460px;top:0;width:4000px;height:2400px;transform:rotateX(78deg);transform-origin:50% 0;background-image:linear-gradient(rgba(125,211,252,.6) 3px,transparent 3px),linear-gradient(90deg,rgba(125,211,252,.6) 3px,transparent 3px);background-size:110px 110px;background-position:30px 0}
+.term{position:absolute;left:90px;top:100px;width:520px;border-radius:22px;background:rgba(11,16,51,.62);border:1.5px solid rgba(125,211,252,.45);backdrop-filter:blur(14px);box-shadow:0 24px 60px rgba(0,0,0,.35);overflow:hidden}
+.term .bar{padding:14px 20px;font-size:17px;color:#7DD3FC;border-bottom:1px solid rgba(125,211,252,.25)}
+.term .bar i{display:inline-block;width:11px;height:11px;border-radius:50%;background:#FFC15E;margin-right:8px;box-shadow:0 0 8px #FFC15E}
+.term pre{padding:18px 22px 22px;font-family:'DejaVu Sans Mono',monospace;font-size:22px;line-height:1.55;color:#E2E8F0}
+.term .c{color:#7DD3FC}.term .k{color:#FFC15E}.term .g{color:#A3E635}
+.cur{display:inline-block;width:12px;height:24px;background:#FFC15E;vertical-align:-4px}
+.tag{position:absolute;right:90px;top:170px;padding:12px 20px;border-radius:30px;background:rgba(255,193,94,.14);border:1.5px solid rgba(255,193,94,.6);color:#FFD891;font-size:18px}
+.h1{position:absolute;left:90px;top:820px;width:920px;color:#F2F5FA;font-weight:900;font-size:94px;line-height:1.02;letter-spacing:-.02em;text-shadow:0 6px 40px rgba(11,16,51,.9)}
+.h1 em{font-style:normal;color:#FFC15E}
+.sub{position:absolute;left:90px;top:1060px;width:900px;color:#BFE6FD;font-family:'Inter';font-weight:600;font-size:36px;line-height:1.3;text-shadow:0 2px 20px #0B1033}
+.lock{bottom:70px}.lock b{color:#fff}.lock span{color:#7DD3FC}
+.fade{position:absolute;left:0;top:700px;width:1080px;height:650px;background:linear-gradient(180deg,rgba(11,16,51,0),rgba(11,16,51,.9) 22%,#0B1033 45%);z-index:2}
+.h1,.sub,.lock{z-index:3}.scan{z-index:4}
+</style></head><body><div class="st" id="s">
+<div class="sunglow"></div>
+<div class="sunset"></div>
+<div class="floor"></div>
+<div class="fw"><div class="grid"></div></div>
+<div class="horizon"></div>
+<div class="fade"></div>
+<div class="term"><div class="bar mono"><i></i>TIP_OF_THE_DAY · ROUTINE.SH</div>
+<pre><span class="c"># сделал руками 3 раза?</span>
+<span class="k">for</span> task <span class="k">in</span> $routine; <span class="k">do</span>
+  automate <span class="g">"$task"</span>
+<span class="k">done</span>
+<span class="g">✓ сэкономлено: часы</span> <span class="cur"></span></pre></div>
+<div class="tag mono">IT · СОВЕТ</div>
+<div class="h1">Сделал трижды?<br><em>Автоматизируй.</em></div>
+<div class="sub">Скрипт пишется один раз,<br>а время экономит каждый день.</div>
+<div class="lock"><div class="sun">VA</div><div><b>VA Corporation</b><span>AI AGENTS · GAMES · SOFTWARE</span></div></div>
+<div class="scan"></div>
+</div><script>
+const s=document.getElementById('s');let seed=57;const r=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+for(let i=0;i<140;i++){const d=document.createElement('div');d.className='star';const z=r()*2.4+.6;
+d.style.cssText=`left:${r()*1080}px;top:${r()*620}px;width:${z}px;height:${z}px;opacity:${.2+r()*.7}`;s.insertBefore(d,s.children[0])}
+</script></body></html>
