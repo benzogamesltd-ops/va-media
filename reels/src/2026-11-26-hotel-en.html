@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;font-family:Inter,Arial,sans-serif;color:#fff;position:relative;
+background:radial-gradient(900px 700px at 50% 20%,#17306B 0%,#0B1736 55%,#050A1C 100%)}
+.stars i{position:absolute;width:3px;height:3px;border-radius:50%;background:#E8F0FF;animation:tw 2s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.25}50%{opacity:1}}
+.moon{position:absolute;right:110px;top:150px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 40% 38%,#FFF8E1,#F4D58A 60%,#C99A3C);box-shadow:0 0 90px rgba(244,213,138,.55)}
+/* hotel */
+.hotel{position:absolute;left:190px;bottom:0;width:700px;height:1000px;background:linear-gradient(180deg,#1B2A55,#0F1A3A);border-radius:18px 18px 0 0;box-shadow:0 0 0 4px rgba(244,213,138,.35),0 -20px 120px rgba(244,213,138,.15);animation:push 25s linear infinite}
+@keyframes push{0%{transform:scale(1)}100%{transform:scale(1.06)}}
+.sign{position:absolute;top:34px;left:0;right:0;text-align:center;font:900 54px Montserrat,sans-serif;letter-spacing:14px;color:#F4D58A;text-shadow:0 0 24px rgba(244,213,138,.8)}
+.win{position:absolute;left:60px;right:60px;top:130px;display:grid;grid-template-columns:repeat(5,1fr);gap:26px}
+.win b{height:80px;border-radius:8px;background:#22325E}
+.win b.on{background:linear-gradient(180deg,#FFE7A8,#F2B94B);box-shadow:0 0 24px rgba(242,185,75,.6);animation:lit 3s ease-in-out infinite}
+@keyframes lit{0%,100%{opacity:1}50%{opacity:.75}}
+.door{position:absolute;bottom:0;left:280px;width:140px;height:190px;background:linear-gradient(180deg,#FFE7A8,#F2B94B);border-radius:70px 70px 0 0;box-shadow:0 0 60px rgba(242,185,75,.7)}
+.sc{position:absolute;inset:0;opacity:0;animation-duration:25s;animation-iteration-count:infinite;animation-timing-function:linear}
+.s1{opacity:1;animation-name:a1}.s2{animation-name:a2}.s3{animation-name:a3}.s4{animation-name:a4}.s5{animation-name:a5}
+/* 0-4.4 | 4.4-9.4 | 9.4-14.4 | 14.4-19 | 19-22 */
+@keyframes a1{0%,19.4%{opacity:1}20.6%,98.8%{opacity:0}100%{opacity:1}}
+@keyframes a2{0%,19.4%{opacity:0}20.6%,43%{opacity:1}44.2%,100%{opacity:0}}
+@keyframes a3{0%,43%{opacity:0}44.2%,65%{opacity:1}66.2%,100%{opacity:0}}
+@keyframes a4{0%,65%{opacity:0}66.2%,85.8%{opacity:1}87%,100%{opacity:0}}
+@keyframes a5{0%,85.8%{opacity:0}87%,98.8%{opacity:1}100%{opacity:0}}
+.dim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,10,28,.92) 0%,rgba(5,10,28,.75) 55%,rgba(5,10,28,.55) 100%)}
+h1{font:900 112px/0.98 Montserrat,sans-serif;letter-spacing:-3px;text-align:center;text-shadow:0 8px 40px rgba(0,0,0,.7)}
+h1 em{font-style:normal;color:#F4D58A}
+.s1 h1{position:absolute;top:380px;left:40px;right:40px}
+.chip{position:absolute;left:0;right:0;margin:auto;width:max-content;top:690px;font:800 40px Inter,sans-serif;background:rgba(244,213,138,.15);border:3px solid #F4D58A;color:#FFE7A8;border-radius:50px;padding:14px 34px;animation:pl 1.2s ease-in-out infinite}
+@keyframes pl{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.bubble{position:absolute;right:120px;top:800px;background:#fff;color:#0B1736;font:800 40px Inter,sans-serif;border-radius:30px 30px 6px 30px;padding:20px 30px;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.bubble small{display:block;font:700 26px Inter,sans-serif;color:#5B6B8F}
+.s2 h1,.s3 h1,.s4 h1{position:absolute;top:230px;left:40px;right:40px}
+.cards{position:absolute;left:90px;right:90px;top:700px;display:flex;flex-direction:column;gap:26px}
+.c{border-radius:26px;padding:26px 30px;font:700 42px/1.25 Inter,sans-serif;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.g{background:#fff;color:#0B1736;align-self:flex-start;border-bottom-left-radius:6px}
+.a{background:linear-gradient(135deg,#F4D58A,#E0A83C);color:#2A1A00;align-self:flex-end;border-bottom-right-radius:6px}
+.c small{display:block;font:800 24px Inter,sans-serif;letter-spacing:2px;opacity:.7;margin-bottom:6px}
+.s2 .c:nth-child(2){animation:bob 2.5s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.sub{position:absolute;left:60px;right:60px;top:1560px;text-align:center;font:800 54px/1.2 Inter,sans-serif;color:#DCE6FF}
+.grid4{position:absolute;left:80px;right:80px;top:700px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.t{background:rgba(255,255,255,.08);border:3px solid rgba(244,213,138,.55);border-radius:28px;padding:34px 26px;text-align:center;animation:glowc 4.6s ease-in-out infinite}
+.t:nth-child(2){animation-delay:-3.45s}.t:nth-child(3){animation-delay:-2.3s}.t:nth-child(4){animation-delay:-1.15s}
+@keyframes glowc{0%,100%{box-shadow:none}12%{box-shadow:0 0 50px rgba(244,213,138,.55)}25%{box-shadow:none}}
+.t i{font-style:normal;font-size:86px;display:block}
+.t b{display:block;font:900 44px Montserrat,sans-serif;margin-top:12px}
+.langs{position:absolute;left:60px;right:60px;top:660px;display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
+.langs span{font:800 46px Inter,sans-serif;background:rgba(255,255,255,.1);border:2px solid rgba(220,230,255,.4);border-radius:22px;padding:16px 26px;animation:bob 3s ease-in-out infinite}
+.langs span:nth-child(2n){animation-delay:-1.5s}
+.star5{position:absolute;left:0;right:0;top:980px;text-align:center}
+.review{display:inline-block;background:#fff;color:#0B1736;border-radius:26px;padding:26px 34px;font:700 40px/1.3 Inter,sans-serif;max-width:880px;text-align:left;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.review small{display:block;color:#E0A83C;font-size:44px;letter-spacing:4px}
+.sun{position:absolute;left:390px;top:420px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle at 38% 35%,#FFF7DE,#FFC15E 45%,#F07A1A);box-shadow:0 0 120px rgba(255,193,94,.9);display:flex;align-items:center;justify-content:center;font:900 110px Montserrat,sans-serif;color:#3B1D00;animation:sg 1.5s ease-in-out infinite}
+@keyframes sg{0%,100%{box-shadow:0 0 90px rgba(255,193,94,.8)}50%{box-shadow:0 0 170px rgba(255,193,94,1)}}
+.s5 .name{position:absolute;top:780px;left:0;right:0;text-align:center;font:900 92px Montserrat,sans-serif}
+.s5 .tag{position:absolute;top:890px;left:0;right:0;text-align:center;font:700 34px Inter,sans-serif;letter-spacing:6px;color:#AFC4F0}
+.s5 .price{position:absolute;top:930px;left:0;right:0;text-align:center;font:900 76px Montserrat,sans-serif;color:#F4D58A}
+.s5 .vat{position:absolute;top:1030px;left:0;right:0;text-align:center;font:700 36px Inter,sans-serif;color:#DCE6FF}
+.s5 .url{position:absolute;top:1150px;left:0;right:0;text-align:center;font:900 60px Inter,sans-serif}
+.s5 .cta{position:absolute;top:1330px;left:0;right:0;text-align:center;font:800 46px Inter,sans-serif;color:#FFE7A8}
+</style></head><body>
+<div class="stars"><i style="left:80px;top:120px"></i><i style="left:300px;top:260px;animation-delay:-1s"></i><i style="left:520px;top:90px"></i><i style="left:700px;top:330px;animation-delay:-.5s"></i><i style="left:950px;top:420px;animation-delay:-1.4s"></i><i style="left:160px;top:520px"></i><i style="left:880px;top:80px;animation-delay:-.8s"></i></div>
+<div class="moon"></div>
+<div class="hotel"><div class="sign">HOTEL</div><div class="win">
+<b class="on"></b><b></b><b class="on"></b><b></b><b></b>
+<b></b><b class="on"></b><b></b><b></b><b class="on"></b>
+<b></b><b></b><b></b><b class="on"></b><b></b>
+<b class="on"></b><b></b><b></b><b></b><b></b>
+<b></b><b></b><b class="on"></b><b></b><b class="on"></b>
+<b></b><b class="on"></b><b></b><b></b><b></b>
+</div><div class="door"></div></div>
+
+<div class="sc s1">
+ <h1>Guests write<br>at <em>3 AM.</em><br>Who answers?</h1>
+ <div class="bubble"><small>03:07 · Guest</small>Late check-in possible? 🌙</div>
+</div>
+
+<div class="sc s2"><div class="dim"></div>
+ <h1>An AI concierge<br><em>answers 24/7.</em></h1>
+ <div class="cards">
+  <div class="c g"><small>GUEST · 03:07</small>Check-in at 2 AM?</div>
+  <div class="c a"><small>AI CONCIERGE · 03:07</small>Of course! Door code sent ✓</div>
+ </div>
+</div>
+
+<div class="sc s3"><div class="dim"></div>
+ <h1>Books &amp; sells<br><em>right in chat.</em></h1>
+ <div class="grid4">
+  <div class="t"><i>🛏️</i><b>Direct bookings</b></div>
+  <div class="t"><i>⬆️</i><b>Room upgrades</b></div>
+  <div class="t"><i>🚕</i><b>Transfers</b></div>
+  <div class="t"><i>💆</i><b>Spa &amp; tours</b></div>
+ </div>
+</div>
+
+<div class="sc s4"><div class="dim"></div>
+ <h1>Every language.<br><em>Even reviews.</em></h1>
+ <div class="langs"><span>EN</span><span>DE</span><span>ES</span><span>FR</span></div>
+ <div class="star5"><div class="review"><small>★★★★★</small>Thanks for your stay!</div></div>
+</div>
+
+<div class="sc s5"><div class="dim"></div>
+ <div class="sun notranslate">VA</div>
+ <div class="name">VA Corporation</div>
+ <div class="price">AI for hotels from €690</div>
+ <div class="vat">+ VAT · free consultation</div>
+ <div class="url">va-corporation.github.io</div>
+</div>
+</body></html>
