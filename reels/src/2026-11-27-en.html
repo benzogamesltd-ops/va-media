@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;font-family:Inter,Arial,sans-serif;color:#fff;position:relative;
+background:radial-gradient(1000px 800px at 50% 30%,#2A2390 0%,#1E1B6B 40%,#0B1033 100%)}
+.neb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.55}
+.n1{left:-200px;top:200px;width:700px;height:700px;background:#5B21B6;animation:dr 12s ease-in-out infinite alternate}
+.n2{right:-250px;top:1000px;width:800px;height:800px;background:#0E7490;animation:dr 14s ease-in-out infinite alternate-reverse}
+@keyframes dr{0%{transform:translate(0,0)}100%{transform:translate(80px,-60px)}}
+.stars i{position:absolute;width:4px;height:4px;border-radius:50%;background:#E6F6FF;animation:tw 2.2s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.2}50%{opacity:1}}
+.scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 2px,transparent 2px 6px);pointer-events:none}
+.orb{position:absolute;left:290px;top:1080px;width:500px;height:500px;border-radius:50%;
+background:radial-gradient(circle at 36% 32%,#B9F3FF,#22D3EE 30%,#3B2FB8 70%,#1E1B6B);box-shadow:0 0 160px rgba(34,211,238,.55),inset -40px -50px 90px rgba(11,16,51,.8);animation:push 24s linear infinite}
+@keyframes push{0%{transform:scale(1)}100%{transform:scale(1.08)}}
+.ring{position:absolute;left:190px;top:1230px;width:700px;height:200px;border-radius:50%;border:4px solid rgba(250,204,21,.65);box-shadow:0 0 30px rgba(250,204,21,.4);animation:rg 6s linear infinite}
+@keyframes rg{0%{transform:rotate(-12deg)}50%{transform:rotate(12deg)}100%{transform:rotate(-12deg)}}
+.sc{position:absolute;inset:0;opacity:0;animation-duration:24s;animation-iteration-count:infinite;animation-timing-function:linear}
+.s1{opacity:1;animation-name:a1}.s2{animation-name:a2}.s3{animation-name:a3}.s4{animation-name:a4}.s5{animation-name:a5}
+/* 0-4.4 | 4.4-9.4 | 9.4-14.0 | 14.0-19.0 | 19.0-23.7 -> loop */
+@keyframes a1{0%,18.333%{opacity:1}19.583%,98.75%{opacity:0}100%{opacity:1}}
+@keyframes a2{0%,18.333%{opacity:0}19.583%,39.167%{opacity:1}40.417%,100%{opacity:0}}
+@keyframes a3{0%,39.167%{opacity:0}40.417%,58.333%{opacity:1}59.583%,100%{opacity:0}}
+@keyframes a4{0%,58.333%{opacity:0}59.583%,79.167%{opacity:1}80.417%,100%{opacity:0}}
+@keyframes a5{0%,79.167%{opacity:0}80.417%,98.75%{opacity:1}100%{opacity:0}}
+.dim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,16,51,.88) 0%,rgba(11,16,51,.7) 55%,rgba(11,16,51,.45) 100%)}
+h1{font:900 124px/0.98 Montserrat,sans-serif;letter-spacing:-3px;text-align:center;text-shadow:0 8px 40px rgba(0,0,0,.6)}
+h1 em{font-style:normal;color:#FACC15}
+.s1 h1{position:absolute;top:560px;left:40px;right:40px;animation:pp 1.4s ease-in-out infinite}
+@keyframes pp{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+.hud{position:absolute;left:0;right:0;margin:auto;width:max-content;top:400px;font:700 30px 'DejaVu Sans Mono',monospace;letter-spacing:3px;color:#67E8F9;background:rgba(255,255,255,.1);border:2px solid rgba(103,232,249,.55);border-radius:16px;padding:12px 26px}
+.hud b{color:#A3E635}
+.chip{position:absolute;left:0;right:0;margin:auto;width:max-content;top:1000px;font:800 44px Inter,sans-serif;background:rgba(250,204,21,.14);border:3px solid #FACC15;color:#FFF3B0;border-radius:50px;padding:16px 38px}
+.dots{position:absolute;left:0;right:0;top:1640px;display:flex;justify-content:center;gap:22px}
+.dots i{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.25);animation:dt 1.6s ease-in-out infinite}
+.dots i:nth-child(2){animation-delay:.4s}.dots i:nth-child(3){animation-delay:.8s}.dots i:nth-child(4){animation-delay:1.2s}
+@keyframes dt{0%,100%{background:rgba(255,255,255,.25)}30%{background:#22D3EE;box-shadow:0 0 20px #22D3EE}}
+.s2 h1,.s3 h1,.s4 h1{position:absolute;top:300px;left:40px;right:40px}
+.pipe{position:absolute;left:120px;right:120px;top:720px;display:flex;flex-direction:column;gap:30px}
+.st{display:flex;align-items:center;gap:28px;background:rgba(255,255,255,.1);border:2px solid rgba(103,232,249,.5);border-radius:28px;padding:26px 34px;font:800 52px Inter,sans-serif;animation:gl 4s ease-in-out infinite}
+.st:nth-child(2){animation-delay:-3s}.st:nth-child(3){animation-delay:-2s}.st:nth-child(4){animation-delay:-1s}
+@keyframes gl{0%,100%{box-shadow:none;transform:translateX(0)}15%{box-shadow:0 0 50px rgba(34,211,238,.6);transform:translateX(14px)}30%{box-shadow:none;transform:translateX(0)}}
+.st i{font-style:normal;font-size:60px}
+.st span{margin-left:auto;color:#A3E635;font-size:56px}
+.chips{position:absolute;left:80px;right:80px;top:760px;display:flex;flex-direction:column;gap:30px;align-items:center}
+.pub{font:800 58px Inter,sans-serif;background:rgba(255,255,255,.1);border:3px solid rgba(163,230,53,.7);border-radius:26px;padding:24px 50px;min-width:620px;text-align:center;animation:bob 3s ease-in-out infinite}
+.pub:nth-child(2){animation-delay:-1s}.pub:nth-child(3){animation-delay:-2s}
+.pub b{color:#A3E635}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.plan{position:absolute;left:110px;right:110px;top:780px;background:linear-gradient(135deg,rgba(250,204,21,.22),rgba(34,211,238,.16));border:3px solid #FACC15;border-radius:36px;padding:50px 40px;text-align:center;box-shadow:0 0 80px rgba(250,204,21,.3);animation:pp 2s ease-in-out infinite}
+.plan small{display:block;font:700 30px 'DejaVu Sans Mono',monospace;letter-spacing:4px;color:#67E8F9;margin-bottom:18px}
+.plan b{display:block;font:900 84px/1.05 Montserrat,sans-serif}
+.plan span{display:block;font:800 48px Inter,sans-serif;color:#FFF3B0;margin-top:16px}
+.sun{position:absolute;left:390px;top:420px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle at 38% 35%,#FFF7DE,#FFC15E 45%,#F07A1A);box-shadow:0 0 120px rgba(255,193,94,.9);display:flex;align-items:center;justify-content:center;font:900 110px Montserrat,sans-serif;color:#3B1D00;animation:sg 1.5s ease-in-out infinite}
+@keyframes sg{0%,100%{box-shadow:0 0 90px rgba(255,193,94,.8)}50%{box-shadow:0 0 170px rgba(255,193,94,1)}}
+.s5 .name{position:absolute;top:780px;left:0;right:0;text-align:center;font:900 92px Montserrat,sans-serif}
+.s5 .price{position:absolute;top:930px;left:30px;right:30px;text-align:center;font:900 70px/1.1 Montserrat,sans-serif;color:#FACC15}
+.s5 .url{position:absolute;top:1150px;left:0;right:0;text-align:center;font:900 64px Inter,sans-serif}
+.s5 .cta{position:absolute;top:1290px;left:0;right:0;text-align:center;font:800 46px Inter,sans-serif;color:#67E8F9}
+</style></head><body>
+<div class="neb n1"></div><div class="neb n2"></div>
+<div class="stars"><i style="left:80px;top:120px"></i><i style="left:300px;top:260px;animation-delay:-1s"></i><i style="left:520px;top:90px"></i><i style="left:700px;top:330px;animation-delay:-.5s"></i><i style="left:950px;top:420px;animation-delay:-1.4s"></i><i style="left:160px;top:520px"></i><i style="left:880px;top:80px;animation-delay:-.8s"></i><i style="left:60px;top:1300px;animation-delay:-.3s"></i><i style="left:1000px;top:1500px;animation-delay:-1.7s"></i><i style="left:420px;top:1800px;animation-delay:-.9s"></i><i style="left:820px;top:1750px"></i><i style="left:200px;top:1650px;animation-delay:-1.2s"></i></div>
+<div class="orb"></div><div class="ring"></div>
+<div class="scan"></div>
+
+<div class="sc s1">
+ <div class="hud">SMM_AGENT · <b>ONLINE</b></div>
+ <h1>This reel<br>was made<br>by <em>AI.</em></h1>
+ <div class="chip">No designer. No editor.</div>
+ <div class="dots"><i></i><i></i><i></i><i></i></div>
+</div>
+
+<div class="sc s2"><div class="dim"></div>
+ <h1>From idea<br><em>to reel.</em></h1>
+ <div class="pipe">
+  <div class="st"><i>💡</i>Idea<span>✓</span></div>
+  <div class="st"><i>🎨</i>Design<span>✓</span></div>
+  <div class="st"><i>🎵</i>Music<span>✓</span></div>
+  <div class="st"><i>✍️</i>Caption<span>✓</span></div>
+ </div>
+</div>
+
+<div class="sc s3"><div class="dim"></div>
+ <h1>Then it posts.<br><em>Every day.</em></h1>
+ <div class="chips">
+  <div class="pub">Instagram <b>✓</b></div>
+  <div class="pub">Facebook <b>✓</b></div>
+  <div class="pub">Website <b>✓</b></div>
+ </div>
+</div>
+
+<div class="sc s4"><div class="dim"></div>
+ <h1>Your brand.<br><em>Every day.</em></h1>
+ <div class="plan"><small>AI SMM · START</small><b>12 reels +<br>12 banners</b><span>every month</span></div>
+</div>
+
+<div class="sc s5"><div class="dim"></div>
+ <div class="sun notranslate">VA</div>
+ <div class="name">VA Corporation</div>
+ <div class="price">AI SMM from €299/month<br>+ VAT</div>
+ <div class="url">va-corporation.github.io</div>
+ <div class="cta">Follow us ↓</div>
+</div>
+</body></html>
